@@ -1,0 +1,47 @@
+.form{
+    padding: 20px;
+    img{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 30px auto;
+    }
+    form{
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        align-items: center;
+        input{
+            width: 100%;
+            padding: 10px 15px;
+            outline: none;
+        }
+    }
+}
+.auth_footer{
+    padding: 0 20px;
+    .auth_btn{
+        width: 100%;
+        padding: 10px 15px;
+        cursor: pointer;
+        border: none;
+        outline: none;
+        background-color: #52c41a;
+        color: white;
+    }
+}
+.error {
+    color: red;
+    font-size: 12px;
+    margin-top: 5px;
+  }
+  
+  .verify_btn {
+    margin-top: 10px;
+    background-color: #1890ff;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+  }
+  
