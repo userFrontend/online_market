@@ -26,9 +26,9 @@ const AuthModal = () => {
   };
 
   const handleSendSMS = async () => {
-    const cleanedPhone = cleanPhoneNumber(phone); // Toza telefon raqamini olamiz
+    // const cleanedPhone = cleanPhoneNumber(phone); // Toza telefon raqamini olamiz
     try {
-      const { data } = await sendVerication({ phoneNumber: cleanedPhone });
+      const { data } = await sendVerication({ phoneNumber: phone });
       console.log('Server response:', data);
       setExpectedCode(data.verificationCode);
       setSendSMS(true);
