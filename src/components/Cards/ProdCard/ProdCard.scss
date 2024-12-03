@@ -3,6 +3,7 @@
   flex-direction: column;
   max-width: 290px;
   height: 540px;
+  background-color: white;
   &__head {
     position: relative;
     height: 290px;
@@ -86,7 +87,7 @@
   &:hover {
     .prod-card__body {
       &__title {
-        color: var(--primary-hover-text-color);
+        color: var(--main-color);
       }
     }
     .prod-card__head {
