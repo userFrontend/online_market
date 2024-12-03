@@ -7,6 +7,7 @@ import { SlHandbag } from 'react-icons/sl'
 import { LuSearch } from 'react-icons/lu'
 import { Drawer } from "antd";
 import AuthModal from '../Auth/Auth'
+import { FiMenu } from 'react-icons/fi'
 
 const Header = () => {
     const {userId, exit} = useInfoContext()
@@ -17,33 +18,33 @@ const Header = () => {
     const [open, setOpen] = useState(false);
     const showDrawer = () => setOpen(!open);
     const toggleBurger = () => setShowBurger(!showBurger)
-    const toggle = () => setOpenlang(!openlang);
-    const toggleMenu = () => setShowMenu(!showMenu);
   return (
     <header>
         <div className="container">
           <div className="home_header">
-
           </div>
             <nav className='header_nav'>
+                <div className="burger_menu">
+                  <div className='burger_menu_item' onClick={toggleBurger}><FiMenu className='icon'/> Menu</div>
+                </div>
                 <div className="logo-site">
                   <img src="/images/logo.png" alt="logo" />
                 </div>
-                <ul>
+                <ul className='header_list'>
                     <li>
-                        <NavLink to='/'>SHOP ALL</NavLink>
+                        <NavLink to='/all'>SHOP ALL</NavLink>
                     </li>
                     <li>
-                        <NavLink to='/'>BESTSELLERS</NavLink>
+                        <NavLink to='/bestsellers'>BESTSELLERS</NavLink>
                     </li>
                     <li>
-                        <NavLink to='/'>COLLICTION</NavLink>
+                        <NavLink to='/colliction'>COLLICTION</NavLink>
                     </li>
                     <li>
-                        <NavLink to='/'>ABOUT AS</NavLink>
+                        <NavLink to='/about'>ABOUT AS</NavLink>
                     </li>
                     <li>
-                        <NavLink to='/'>BLOG</NavLink>
+                        <NavLink to='/blog'>BLOG</NavLink>
                     </li>
                 </ul>
                 <div className="options">
@@ -51,13 +52,38 @@ const Header = () => {
                   <AuthModal/>
                   <div className='option_items' onClick={showDrawer}><SlHandbag className='icon'/> CART</div>
                 </div>
+                <div className='media_item' onClick={showDrawer}><SlHandbag className='icon'/>CART</div>
             </nav>
         </div>
         <Drawer title="CART " onClose={showDrawer} open={open}>
-        <p>Some contents...</p>
-        <p>Some contents...</p>
-        <p>Some contents...</p>
-      </Drawer>
+          <p>Some contents...</p>
+          <p>Some contents...</p>
+          <p>Some contents...</p>
+        </Drawer>
+        <Drawer title="Menu" onClose={toggleBurger} open={showBurger}>
+          <div className="options">
+            <div className='option_items'><LuSearch className='icon'/> SEARCH</div>
+            <AuthModal/>
+            <div className='option_items' onClick={showDrawer}><SlHandbag className='icon'/> CART</div>
+          </div>
+          <ul>
+            <li>
+                <NavLink to='/all'>SHOP ALL</NavLink>
+            </li>
+            <li>
+                <NavLink to='/bestsellers'>BESTSELLERS</NavLink>
+            </li>
+            <li>
+                <NavLink to='/colliction'>COLLICTION</NavLink>
+            </li>
+            <li>
+                <NavLink to='/about'>ABOUT AS</NavLink>
+            </li>
+            <li>
+                <NavLink to='/blog'>BLOG</NavLink>
+            </li>
+          </ul>
+        </Drawer>
     </header>
   )
 }
