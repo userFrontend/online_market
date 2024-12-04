@@ -1,5 +1,5 @@
 .custom-swiper {
-  a {
+  .see-all {
     text-align: center;
     font-size: 18px;
     display: inline-block;
@@ -8,12 +8,11 @@
     margin-bottom: 30px;
   }
   .swiper {
-    height: 580px;
     &-pagination-bullets {
       top: 560px;
       height: 10px;
       .swiper-pagination-bullet {
-        background-color: #dfe1e3;
+        background-color: #DFE1E3;
         height: 10px;
         width: 10px;
       }

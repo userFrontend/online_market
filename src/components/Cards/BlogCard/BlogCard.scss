@@ -1,0 +1,36 @@
+.blog-card {
+  &:hover {
+    .blog-card__info__title {
+      color: var(--main-color);
+    }
+  }
+  &__info {
+    padding: 8px 20px 20px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    &__title {
+      font-size: 20px;
+      font-weight: 500;
+      color: var(--primary-text-color);
+    }
+    &__description {
+      font-size: 16px;
+      color: var(--primary-text-color);
+      line-height: 27px;
+    }
+    &__btn {
+      border: 1px solid #383533;
+      border-radius: 4px;
+      color: var(--primary-text-color);
+      font-size: 14px;
+      font-weight: 500;
+      padding: 10px 0;
+      background: none;
+      &:hover {
+        background-color: var(--primary-text-color);
+        color: white;
+      }
+    }
+  }
+}

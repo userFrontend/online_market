@@ -10,6 +10,7 @@
 * {
   margin: 0;
   padding: 0;
+  transition: all .3s linear;
   box-sizing: border-box;
   font-family: sans-serif;
   scrollbar-width: none;
