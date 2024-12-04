@@ -1,6 +1,10 @@
 :root {
-  --bg-color: #ebecf0;
-  --text-color: #babecc;
+  --main-color: #F5A3B7;
+  --main-hover-color: #F8E5E7;
+  --secondary-color: #B0A6BD;
+  --primary-text-color: #383533;
+  --secondary-text-color: #697586;
+  --bg-color: #fff;
   --input-color: black;
 }
 * {
@@ -19,6 +23,10 @@ ul {
 body,
 html {
   font-family: sans-serif;
+}
+
+button{
+  cursor: pointer;
 }
 
 a {
