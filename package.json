@@ -22,7 +22,8 @@
     "react-router-dom": "^6.27.0",
     "react-toastify": "^10.0.6",
     "reactjs-social-login": "^2.6.3",
-    "sass": "^1.80.6"
+    "sass": "^1.80.6",
+    "swiper": "^11.1.15"
   },
   "devDependencies": {
     "@eslint/js": "^9.13.0",
