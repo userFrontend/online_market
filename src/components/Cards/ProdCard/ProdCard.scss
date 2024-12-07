@@ -114,5 +114,10 @@
         width: 100%;
       }
     }
+    &__body{
+      &__title{
+        font-size: 14px;
+      }
+    }
   }
 }

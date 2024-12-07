@@ -130,6 +130,9 @@
 @media (max-width: 450px) {
   .set-card {
     &__info {
+      h1{
+        font-size: 32px;
+      }
       &__buttons {
         display: flex;
         flex-wrap: wrap;
