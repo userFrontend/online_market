@@ -6,8 +6,17 @@
   align-items: center;
   gap: 10px;
   justify-content: center;
+  margin-bottom: 10px;
   width: 100%;
-  span{
+  span {
     color: var(--main-color);
   }
+}
+.see-all {
+  text-align: center;
+  font-size: 18px;
+  display: inline-block;
+  width: 100%;
+  color: var(--secondary-text-color);
+  margin-bottom: 30px;
 }

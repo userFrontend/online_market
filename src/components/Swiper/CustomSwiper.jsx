@@ -9,7 +9,6 @@ import "./CustomSwiper.scss";
 
 // import required modules
 import { Pagination, Navigation, Autoplay } from "swiper/modules";
-import { Link } from "react-router-dom";
 import Title from "../Title/Title";
 import BlogCard from "../Cards/BlogCard/BlogCard";
 
@@ -17,9 +16,6 @@ const CustomSwiper = ({ text, blog }) => {
   return (
     <div className="custom-swiper">
       <Title>{text}</Title>
-      <Link className="see-all" to={"/"}>
-        See All
-      </Link>
       <Swiper
         slidesPerView={blog ? 3 : 4}
         spaceBetween={30}
