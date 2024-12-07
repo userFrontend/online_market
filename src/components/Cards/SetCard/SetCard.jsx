@@ -4,7 +4,7 @@ import "./SetCard.scss";
 const SetCard = ({type}) => {
   return (
     <div className="set-card">
-      <div className={type ? "set-card__info right":"set-card__info left"}>
+      <div className={type ? "right set-card__info":"left set-card__info"}>
         <h1>Blossom Glow Kit</h1>
         <p>
           Reveal your skin's natural glow with our Lotus Glow Kit. Nourishing
@@ -25,6 +25,7 @@ const SetCard = ({type}) => {
         </div>
       </div>
       <div className={type ? "set-card__img left":"set-card__img right"}>
+        <img src="images/set.png" alt="" />
       </div>
     </div>
   );

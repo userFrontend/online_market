@@ -2,45 +2,50 @@
   display: flex;
   flex-direction: column;
   max-width: 290px;
+  min-width: 200px;
   height: 540px;
   background-color: white;
   &__head {
     position: relative;
     height: 290px;
-    .stickers{
-        top: 20px;
-        left: 0;
-        position: absolute;
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-        li{
-            height: 30px;
-            padding: 0 20px;
-            border-radius: 0 15px 15px 0;
-            line-height: 30px;
-            width: fit-content;
-            font-size: 14px;
-            font-weight: 500;
-        }
-        .top{
-            background-color: var(--secondary-color);
-    
-        }
-        .discount{
-            background-color: var(--main-color);
-    
-        }
+    overflow: hidden;
+    border-radius: 2px 2px 0 0;
+    .stickers {
+      top: 20px;
+      left: 0;
+      position: absolute;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      li {
+        height: 30px;
+        padding: 0 20px;
+        border-radius: 0 15px 15px 0;
+        line-height: 30px;
+        width: fit-content;
+        font-size: 14px;
+        font-weight: 500;
+      }
+      .top {
+        background-color: var(--secondary-color);
+      }
+      .discount {
+        background-color: var(--main-color);
+      }
     }
     img {
       border-radius: 2px 2px 0 0;
+      object-fit: cover;
+      width: 100%;
+      height: 290px;
+      object-position: center;
     }
     svg {
       position: absolute;
       top: 20px;
       right: -18px;
       opacity: 0;
-      transition: all linear .3s;
+      transition: all linear 0.3s;
       cursor: pointer;
     }
   }
@@ -94,6 +99,19 @@
       svg {
         opacity: 1;
         right: 23px;
+      }
+    }
+  }
+}
+
+@media (max-width: 450px) {
+  .prod-card {
+    height: 450px;
+    &__head {
+      height: 220px;
+      img {
+        height: 220px;
+        width: 100%;
       }
     }
   }

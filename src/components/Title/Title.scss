@@ -8,6 +8,9 @@
   justify-content: center;
   margin-bottom: 10px;
   width: 100%;
+  &__childs {
+    text-align: center;
+  }
   span {
     color: var(--main-color);
   }
@@ -19,4 +22,13 @@
   width: 100%;
   color: var(--secondary-text-color);
   margin-bottom: 30px;
+}
+
+@media (max-width:600px) {
+  .Title{
+    font-size: 20px;
+  }
+  .see-all{
+    font-size: 16px;
+  }
 }
