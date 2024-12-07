@@ -1,11 +1,11 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import './Header.scss'
-import { NavLink } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 import { useInfoContext } from '../../context/infoContext'
 import { FaRegUser } from 'react-icons/fa'
 import { SlHandbag } from 'react-icons/sl'
 import { LuSearch } from 'react-icons/lu'
-import { Drawer } from "antd";
+import { Collapse, Drawer } from "antd";
 import AuthModal from '../Auth/Auth'
 import { FiMenu } from 'react-icons/fi'
 
@@ -18,6 +18,12 @@ const Header = () => {
     const [open, setOpen] = useState(false);
     const showDrawer = () => setOpen(!open);
     const toggleBurger = () => setShowBurger(!showBurger)
+
+    const text = `
+      A dog is a type of domesticated animal.
+      Known for its loyalty and faithfulness,
+      it can be found as a welcome guest in many households across the world.
+    `;
   return (
     <header>
         <div className="container">
@@ -27,8 +33,10 @@ const Header = () => {
                 <div className="burger_menu">
                   <div className='burger_menu_item' onClick={toggleBurger}><FiMenu className='icon'/> Menu</div>
                 </div>
-                <div className="logo-site">
-                  <img src="/images/logo.png" alt="logo" />
+                <div className="logo_site">
+                  <img src="/images/the.png" alt="logo" />
+                  <img src="/images/text.png" alt="logo" />
+                  <img src="/images/heart.png" alt="logo" />
                 </div>
                 <ul className='header_list'>
                     <li>
@@ -60,27 +68,100 @@ const Header = () => {
           <p>Some contents...</p>
           <p>Some contents...</p>
         </Drawer>
-        <Drawer title="Menu" onClose={toggleBurger} open={showBurger}>
-          <div className="options">
-            <div className='option_items'><LuSearch className='icon'/> SEARCH</div>
-            <AuthModal/>
-            <div className='option_items' onClick={showDrawer}><SlHandbag className='icon'/> CART</div>
+        <Drawer className='menu_box' closeIcon={false} title={false} onClose={toggleBurger} open={showBurger}>
+          <div className="header_menu">
+            <h3>Menu</h3>
+            <button>X</button>
           </div>
+          <Link className='option_menu'><LuSearch className='icon'/> SEARCH</Link>
+          <div className='option_menu'><AuthModal/></div>
           <ul>
             <li>
-                <NavLink to='/all'>SHOP ALL</NavLink>
+                <Collapse className='collapse_menu' accordion ghost expandIconPosition='end' items={[{
+                    key: '1',
+                    label: 'Shop All',
+                    children: <div>
+                    <Collapse className='collapse_menu_item' accordion ghost expandIconPosition='end' items={[
+                      {
+                        key: '1.1',
+                        label: 'Double-Cleanse',
+                        children: <ul>
+                          <li><Link>Cleansing Balms</Link></li>
+                          <li><Link>Cleansing Balms</Link></li>
+                          <li><Link>Water Cleansers</Link></li>
+                        </ul>,
+                      },
+                      {
+                        key: '1.2',
+                        label: 'Exfoliators',
+                        children: <ul>
+                          <li><Link>Cleansing Balms</Link></li>
+                          <li><Link>Cleansing Balms</Link></li>
+                          <li><Link>Water Cleansers</Link></li>
+                        </ul>,
+                      },
+                      {
+                        key: '1.3',
+                        label: 'Toners',
+                        children: <ul>
+                          <li><Link>Cleansing Balms</Link></li>
+                          <li><Link>Cleansing Balms</Link></li>
+                          <li><Link>Water Cleansers</Link></li>
+                        </ul>,
+                      },
+                      {
+                        key: '1.4',
+                        label: 'Masks',
+                        children: <ul>
+                          <li><Link>Cleansing Balms</Link></li>
+                          <li><Link>Cleansing Balms</Link></li>
+                          <li><Link>Water Cleansers</Link></li>
+                        </ul>,
+                      },
+                      {
+                        key: '1.5',
+                        label: 'Eye Care',
+                        children: <ul>
+                          <li><Link>Cleansing Balms</Link></li>
+                          <li><Link>Cleansing Balms</Link></li>
+                          <li><Link>Water Cleansers</Link></li>
+                        </ul>,
+                      },
+                      {
+                        key: '1.6',
+                        label: 'Moisturizers',
+                        children: <ul>
+                          <li><Link>Cleansing Balms</Link></li>
+                          <li><Link>Cleansing Balms</Link></li>
+                          <li><Link>Water Cleansers</Link></li>
+                        </ul>,
+                      },
+                      {
+                        key: '1.7',
+                        label: 'Sun Protection',
+                        children: <ul>
+                          <li><Link>Cleansing Balms</Link></li>
+                          <li><Link>Cleansing Balms</Link></li>
+                          <li><Link>Water Cleansers</Link></li>
+                        </ul>,
+                      },
+                    ]}/>
+                    <Link>Cleansing Balms</Link>
+                    <Link>Makeup & Tools</Link>
+                    </div>
+                  }]} />
             </li>
             <li>
-                <NavLink to='/bestsellers'>BESTSELLERS</NavLink>
+                <Link to='/bestsellers'>BESTSELLERS</Link>
             </li>
             <li>
-                <NavLink to='/colliction'>COLLICTION</NavLink>
+                <Link to='/colliction'>COLLICTION</Link>
             </li>
             <li>
-                <NavLink to='/about'>ABOUT AS</NavLink>
+                <Link to='/about'>ABOUT AS</Link>
             </li>
             <li>
-                <NavLink to='/blog'>BLOG</NavLink>
+                <Link to='/blog'>BLOG</Link>
             </li>
           </ul>
         </Drawer>

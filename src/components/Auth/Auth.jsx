@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Modal } from 'antd';
+import { DatePicker, Space, Modal } from 'antd';
 import { FaRegUser } from 'react-icons/fa';
 import PhoneInput from '../Input/Input';
 import './Auth.scss';
@@ -12,7 +12,10 @@ const AuthModal = () => {
   const [verificationCode, setVerificationCode] = useState('');
   const [expectedCode, setExpectedCode] = useState(null);
   const [error, setError] = useState('');
-
+  
+  const onChange = (date, dateString) => {
+    console.log(date, dateString);
+  };
   const showModal = () => {
     setOpen(!open);
     setSendSMS(false);
@@ -96,6 +99,13 @@ const AuthModal = () => {
                 {error && <span className="error">{error}</span>}
               </>
             )}
+  <Space direction="vertical">
+    <DatePicker onChange={onChange} />
+    <DatePicker onChange={onChange} picker="week" />
+    <DatePicker onChange={onChange} picker="month" />
+    <DatePicker onChange={onChange} picker="quarter" />
+    <DatePicker onChange={onChange} picker="year" />
+  </Space>
           </form>
         </div>
       </Modal>

@@ -3,6 +3,13 @@ header{
     top: 0;
     width: 100%;
     background-color: #ffffff;
+    z-index: 10;
+    .logo_site{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 6px;
+    }
     z-index: 100;
     .header_nav{
         display: flex;
@@ -51,5 +58,40 @@ header{
     }
     .burger_menu{
         display: block !important;
+    }
+    .ant-drawer-body{
+        padding: 0 !important;
+    }
+    .menu_box{
+        .header_menu{
+            padding: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: #F8E5E7;
+            button{
+                border: none;
+                background: transparent;
+                cursor: pointer;
+            }
+        }
+        .option_menu{
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 24px;
+        }
+        ul{
+            li{
+                padding: 10px 24px;
+            }
+        }
+    }
+    .collapse_menu .ant-collapse-header{
+        padding: 0 !important;
+        font-size: 15px;
+    }
+    .collapse_menu_item .ant-collapse-header{
+        padding: 12px 16px !important;
     }
 }
