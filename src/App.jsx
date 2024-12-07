@@ -21,12 +21,10 @@ function App() {
       <Header />
       <Routes>
         <Route index path="/" element={<Home />} />
-        <Route
-          path="/profile"
-          element={!userId ? <Navigate to="/" replace /> : <Profile />}
-        />
-        <Route path="*" element={<Navigate to="/" replace />} />
-        <Route path="/products/:id" element={<OneProd />} />
+        <Route index path="/prod/:prodId" element={<OneProd />} />
+        <Route path="/profile" element={!userId ? <Navigate to="/" replace /> : <Profile />} />
+        <Route path="*" element={<Navigate to="/" replace />}/>
+        {/* <Route path="*" element={<Navigate to="/" replace /> : <OneProd /> } /> */}
       </Routes>
     </>
   );

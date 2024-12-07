@@ -13,7 +13,7 @@ const ProdCard = () => {
   };
 
   return (
-    <Link to="/products/1" className="prod-card">
+    <Link to={`/prod/1234-1234`} className="prod-card">
       <div className="prod-card__head">
         <ul className="stickers">
           {isTop ? <li className="top">Top Rated</li> : ""}
