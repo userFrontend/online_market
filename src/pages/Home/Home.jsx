@@ -1,6 +1,5 @@
 import SetCard from "../../components/Cards/SetCard/SetCard";
 import CustomSwiper from "../../components/Swiper/CustomSwiper";
-
 import "./Home.scss";
 
 const Home = () => {
