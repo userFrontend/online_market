@@ -9,11 +9,6 @@ const ProdCard = () => {
   const isTop = true;
   const discount = 20;
 
-  
-  const toBag = (e) => {
-    e.preventDefault();
-  };
-
   return (
     <Link to={`/prod/1234-1234`} className="prod-card">
       <div className="prod-card__head">
@@ -38,7 +33,7 @@ const ProdCard = () => {
       <div className="prod-card__foot">
         <button onClick={() => addToCart({prodId: Math.random(10), name: 'Test', price: 100})}>Add To Bag</button>
       </div>
-    </div>
+    </Link>
   );
 };
 
