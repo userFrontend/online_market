@@ -1,5 +1,8 @@
 import SetCard from "../../components/Cards/SetCard/SetCard";
 import CustomSwiper from "../../components/Swiper/CustomSwiper";
+import Title from "../../components/Title/Title";
+import { Icons } from "../../utils/icons";
+
 import "./Home.scss";
 
 const Home = () => {
@@ -40,6 +43,88 @@ const Home = () => {
               <button>Explore more</button>
             </div>
           </div>
+        </div>
+      </section>
+      <section className="shares">
+        <div className="container shares__container">
+          <Title>
+            Share how you blossomed with <span>#bloombeauty </span>
+          </Title>
+          <ul className="shares__container__wrapper">
+            <li className="shares__container__wrapper__item">
+              <div className="shares__container__wrapper__item__curtain">
+                <button>
+                  See In <Icons.instagram />
+                </button>
+                <button>Buy Now</button>
+              </div>
+            </li>
+            <li className="shares__container__wrapper__item">
+              <div className="shares__container__wrapper__item__curtain">
+                <button>
+                  See In <Icons.instagram />
+                </button>
+                <button>Buy Now</button>
+              </div>
+            </li>
+            <li className="shares__container__wrapper__item">
+              <div className="shares__container__wrapper__item__curtain">
+                <button>
+                  See In <Icons.instagram />
+                </button>
+                <button>Buy Now</button>
+              </div>
+            </li>
+            <li className="shares__container__wrapper__item">
+              <div className="shares__container__wrapper__item__curtain">
+                <button>
+                  See In <Icons.instagram />
+                </button>
+                <button>Buy Now</button>
+              </div>
+            </li>
+            <li className="shares__container__wrapper__item">
+              <div className="shares__container__wrapper__item__curtain">
+                <button>
+                  See In <Icons.instagram />
+                </button>
+                <button>Buy Now</button>
+              </div>
+            </li>
+            <li className="shares__container__wrapper__item">
+              <div className="shares__container__wrapper__item__curtain">
+                <button>
+                  See In <Icons.instagram />
+                </button>
+                <button>Buy Now</button>
+              </div>
+            </li>
+            <li className="shares__container__wrapper__item">
+              <div className="shares__container__wrapper__item__curtain">
+                <button>
+                  See In <Icons.instagram />
+                </button>
+                <button>Buy Now</button>
+              </div>
+            </li>
+            <li className="shares__container__wrapper__item">
+              <div className="shares__container__wrapper__item__curtain">
+                <button>
+                  See In <Icons.instagram />
+                </button>
+                <button>Buy Now</button>
+              </div>
+            </li>
+            <li className="shares__container__wrapper__item">
+              <div className="shares__container__wrapper__item__curtain">
+                <button>
+                  See In <Icons.instagram />
+                </button>
+                <button>Buy Now</button>
+              </div>
+            </li>
+          </ul>
+          <button className="shares__container__btn">Follow Us</button>
         </div>
       </section>
     </main>

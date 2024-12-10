@@ -15,17 +15,16 @@ const ProdCard = () => {
   };
 
   return (
-    <div className="prod-card">
-      <Link to="/singleProduct">
-        <div className="prod-card__head">
-          <ul className="stickers">
-            {isTop ? <li className="top">Top Rated</li> : ""}
-            {discount ? <li className="discount">-{discount}%</li> : ""}
-          </ul>
-          <img src="images/img.png" alt="img" />
-          <Icons.likeDefault />
-        </div>
-      </Link>
+    <Link to={`/prod/1234-1234`} className="prod-card">
+      <div className="prod-card__head">
+        <ul className="stickers">
+          {isTop ? <li className="top">Top Rated</li> : ""}
+          {discount ? <li className="discount">-{discount}%</li> : ""}
+        </ul>
+        <img src="images/img.png" alt="img" />
+        <Icons.likeDefault />
+      </div>
+
       <div className="prod-card__body">
         <h2 className="prod-card__body__title">
           All-Around Safe Block Essence Sun SPF45+
