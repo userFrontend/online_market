@@ -2,8 +2,10 @@ import { Link } from "react-router-dom";
 import { Icons } from "../../../utils/icons";
 import "./ProdCard.scss";
 import Rating from "../../Rating/Rating";
+import { useInfoContext } from "../../../context/infoContext";
 
 const ProdCard = () => {
+  const {addToCart } = useInfoContext()
   const isTop = true;
   const discount = 20;
 
@@ -34,9 +36,9 @@ const ProdCard = () => {
         <p className="prod-card__body__price">32$</p>
       </div>
       <div className="prod-card__foot">
-        <button onClick={(e) => toBag(e)}>Add To Bag</button>
+        <button onClick={() => addToCart({prodId: Math.random(10), name: 'Test', price: 100})}>Add To Bag</button>
       </div>
-    </Link>
+    </div>
   );
 };
 

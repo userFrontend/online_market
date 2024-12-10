@@ -4,6 +4,14 @@
       color: var(--main-color);
     }
   }
+  &__img {
+    overflow: hidden;
+    img {
+      margin: auto;
+      width: 100%;
+      object-position: center;
+    }
+  }
   &__info {
     padding: 8px 20px 20px 20px;
     display: flex;
@@ -18,6 +26,10 @@
       font-size: 16px;
       color: var(--primary-text-color);
       line-height: 27px;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
     }
     &__btn {
       border: 1px solid #383533;

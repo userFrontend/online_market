@@ -8,9 +8,11 @@ import { LuSearch } from 'react-icons/lu'
 import { Collapse, Drawer } from "antd";
 import AuthModal from '../Auth/Auth'
 import { FiMenu } from 'react-icons/fi'
+import { MdClose } from 'react-icons/md'
+import { Icons } from '../../utils/icons'
 
 const Header = () => {
-    const {userId, exit} = useInfoContext()
+    const { cartItems, removeFromCart, totalPrice, increment, decrement, userId, exit} = useInfoContext()
     const [openlang, setOpenlang] = useState(false);
     const [showBurger, setShowBurger] = useState(false);
     const [showMenu, setShowMenu] = useState(false);
@@ -63,15 +65,45 @@ const Header = () => {
                 <div className='media_item' onClick={showDrawer}><SlHandbag className='icon'/>CART</div>
             </nav>
         </div>
-        <Drawer title="CART " onClose={showDrawer} open={open}>
-          <p>Some contents...</p>
-          <p>Some contents...</p>
-          <p>Some contents...</p>
+        <Drawer className='menu_box' title={false} closeIcon={false} onClose={showDrawer} open={open}>
+          <div className="header_menu_cart">
+            <h3>CART</h3>
+            <button onClick={showDrawer}><MdClose /></button>
+            <div className="bottom">
+              <Icons.roseLeft/>
+            </div>
+          </div>
+          <div className="cart">
+            {cartItems?.length === 0 ? (
+              <p>Savatcha bo'sh.</p>
+            ) : (
+              <div>
+                {cartItems.map(item => (
+                   <div key={item.id} className="cart_item">
+                    <img src="/images/img.png" alt="cart_img" />
+                    <div className="cart_body">
+                      <span>{item.name}</span>
+                      <span>{item.price * item.quantity} so'm</span>
+                      <div className="cart_btn">
+                        <div className="cart_controls">
+                          <button onClick={() => decrement(item.id)}>-</button>
+                          <span>{item.quantity}</span>
+                          <button onClick={() => increment(item.id)}>+</button>
+                        </div>
+                        <button onClick={() => removeFromCart(item.id)}>x</button>
+                      </div>
+                    </div>
+                 </div>
+               ))}
+               <h3>Umumiy narx: {totalPrice} so'm</h3>
+             </div>
+            )}
+          </div>
         </Drawer>
         <Drawer className='menu_box' closeIcon={false} title={false} onClose={toggleBurger} open={showBurger}>
           <div className="header_menu">
-            <h3>Menu</h3>
-            <button>X</button>
+            <h3>MENU</h3>
+            <button onClick={toggleBurger}><MdClose /></button>
           </div>
           <Link className='option_menu'><LuSearch className='icon'/> SEARCH</Link>
           <div className='option_menu'><AuthModal/></div>
@@ -79,7 +111,7 @@ const Header = () => {
             <li>
                 <Collapse className='collapse_menu' accordion ghost expandIconPosition='end' items={[{
                     key: '1',
-                    label: 'Shop All',
+                    label: 'SHOP ALL',
                     children: <div>
                     <Collapse className='collapse_menu_item' accordion ghost expandIconPosition='end' items={[
                       {
@@ -158,7 +190,79 @@ const Header = () => {
                 <Link to='/colliction'>COLLICTION</Link>
             </li>
             <li>
-                <Link to='/about'>ABOUT AS</Link>
+                <Collapse className='collapse_menu' accordion ghost expandIconPosition='end' items={[{
+                    key: '1',
+                    label: 'ABOUT US',
+                    children: <div>
+                    <Collapse className='collapse_menu_item' accordion ghost expandIconPosition='end' items={[
+                      {
+                        key: '1.1',
+                        label: 'Double-Cleanse',
+                        children: <ul>
+                          <li><Link>Cleansing Balms</Link></li>
+                          <li><Link>Cleansing Balms</Link></li>
+                          <li><Link>Water Cleansers</Link></li>
+                        </ul>,
+                      },
+                      {
+                        key: '1.2',
+                        label: 'Exfoliators',
+                        children: <ul>
+                          <li><Link>Cleansing Balms</Link></li>
+                          <li><Link>Cleansing Balms</Link></li>
+                          <li><Link>Water Cleansers</Link></li>
+                        </ul>,
+                      },
+                      {
+                        key: '1.3',
+                        label: 'Toners',
+                        children: <ul>
+                          <li><Link>Cleansing Balms</Link></li>
+                          <li><Link>Cleansing Balms</Link></li>
+                          <li><Link>Water Cleansers</Link></li>
+                        </ul>,
+                      },
+                      {
+                        key: '1.4',
+                        label: 'Masks',
+                        children: <ul>
+                          <li><Link>Cleansing Balms</Link></li>
+                          <li><Link>Cleansing Balms</Link></li>
+                          <li><Link>Water Cleansers</Link></li>
+                        </ul>,
+                      },
+                      {
+                        key: '1.5',
+                        label: 'Eye Care',
+                        children: <ul>
+                          <li><Link>Cleansing Balms</Link></li>
+                          <li><Link>Cleansing Balms</Link></li>
+                          <li><Link>Water Cleansers</Link></li>
+                        </ul>,
+                      },
+                      {
+                        key: '1.6',
+                        label: 'Moisturizers',
+                        children: <ul>
+                          <li><Link>Cleansing Balms</Link></li>
+                          <li><Link>Cleansing Balms</Link></li>
+                          <li><Link>Water Cleansers</Link></li>
+                        </ul>,
+                      },
+                      {
+                        key: '1.7',
+                        label: 'Sun Protection',
+                        children: <ul>
+                          <li><Link>Cleansing Balms</Link></li>
+                          <li><Link>Cleansing Balms</Link></li>
+                          <li><Link>Water Cleansers</Link></li>
+                        </ul>,
+                      },
+                    ]}/>
+                    <Link>Cleansing Balms</Link>
+                    <Link>Makeup & Tools</Link>
+                    </div>
+                  }]} />
             </li>
             <li>
                 <Link to='/blog'>BLOG</Link>

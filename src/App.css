@@ -62,12 +62,12 @@ a {
 
 @media (max-width: 600px) {
   .container {
-    padding: 0 50px;
+    padding: 0 30px;
   }
 }
 
 @media (max-width: 470px) {
   .container {
-    padding: 0 30px;
+    padding: 0 15px;
   }
 }

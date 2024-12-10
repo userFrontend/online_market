@@ -115,7 +115,16 @@ const Home = () => {
                 <button>Buy Now</button>
               </div>
             </li>
+            <li className="shares__container__wrapper__item">
+              <div className="shares__container__wrapper__item__curtain">
+                <button>
+                  See In <Icons.instagram />
+                </button>
+                <button>Buy Now</button>
+              </div>
+            </li>
           </ul>
+          <button className="shares__container__btn">Follow Us</button>
         </div>
       </section>
     </main>

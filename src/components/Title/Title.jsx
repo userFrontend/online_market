@@ -7,7 +7,7 @@ const Title = ({ children }) => {
     <>
       <h1 className="Title">
         <Icons.roseLeft />
-        {children}
+        <div className="Title__childs">{children}</div>
         <Icons.roseRight />
       </h1>
       <Link className="see-all" to={"/"}>
