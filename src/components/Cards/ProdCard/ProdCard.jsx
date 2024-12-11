@@ -38,7 +38,7 @@ const ProdCard = () => {
       <div className="prod-card__foot">
         <button onClick={() => addToCart({prodId: Math.random(10), name: 'Test', price: 100})}>Add To Bag</button>
       </div>
-    </div>
+    </Link>
   );
 };
 

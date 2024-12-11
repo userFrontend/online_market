@@ -49,28 +49,53 @@ header{
 
     }
 }
-.cart_item{
-    display: flex;
-    align-items: center;
-    gap: 20px;
+.cart_box{
     padding: 20px;
-    img{
-        width: 150px;
-        height: 150px;
-        object-fit: contain;
-    }
-    .cart_body{
-        display: flex;
-        flex-direction: column;
-    }
-    .cart_btn{
+    .cart_item{
+        width: 100%;
         display: flex;
         align-items: center;
         gap: 20px;
-        .cart_controls{
-            button{
+        padding: 10px 0;
+        border-bottom: 1px solid rgba(128, 128, 128, 0.452);
+        img{
+            width: 150px;
+            height: 150px;
+            object-fit: contain;
+        }
+        .cart_body{
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            gap: 20px;
+        }
+        .cart_btn{
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            .cart_controls{
+                display: flex;
+                align-items: center;
+                border: 1px solid rgba(128, 128, 128, 0.452);
+                border-radius: 5px;
+                // width: 60px;
+                span{
+                    text-align: center;
+                    width: 50px;
+                }
+                button{
+                    width: 100%;
+                    outline: none;
+                    background: transparent;
+                    border: none;
+                    padding: 3px;
+                    font-size: 16px;
+                }
+            }
+            .remove_btn{
                 border: none;
-                padding: 4px;
+                background: transparent;
+                font-size: 16px;
             }
         }
     }

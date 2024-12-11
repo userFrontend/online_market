@@ -16,7 +16,7 @@ const Prod = ({
 }) => {
   return (
     
-    <Link to="/prod" className="prod">
+    <Link to="/prod" className="prod">  
       <div className="prod__head">
         <ul className="stickers">
           {isTop && <li className="top">Top Rated</li>}

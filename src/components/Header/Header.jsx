@@ -77,20 +77,20 @@ const Header = () => {
             {cartItems?.length === 0 ? (
               <p>Savatcha bo'sh.</p>
             ) : (
-              <div>
+              <div className='cart_box'>
                 {cartItems.map(item => (
                    <div key={item.id} className="cart_item">
                     <img src="/images/img.png" alt="cart_img" />
                     <div className="cart_body">
-                      <span>{item.name}</span>
-                      <span>{item.price * item.quantity} so'm</span>
+                      <h3>{item.name}</h3>
+                      <span>${item.price * item.quantity}</span>
                       <div className="cart_btn">
                         <div className="cart_controls">
                           <button onClick={() => decrement(item.id)}>-</button>
                           <span>{item.quantity}</span>
                           <button onClick={() => increment(item.id)}>+</button>
                         </div>
-                        <button onClick={() => removeFromCart(item.id)}>x</button>
+                        <button className='remove_btn' onClick={() => removeFromCart(item.id)}><MdClose/></button>
                       </div>
                     </div>
                  </div>
