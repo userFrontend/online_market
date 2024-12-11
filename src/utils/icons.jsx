@@ -99,4 +99,22 @@ export const Icons = {
       />
     </svg>
   ),
+  accordionIcon: ({ props }) => (
+    <svg
+      width="12"
+      height="7"
+      viewBox="0 0 12 7"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      {...props}
+    >
+      <path
+        d="M10.9375 1L5.9375 6L0.9375 1"
+        stroke="#B0A6BD"
+        strokeWidth="1.2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  ),
 };

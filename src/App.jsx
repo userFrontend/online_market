@@ -12,6 +12,7 @@ import { useInfoContext } from "./context/infoContext";
 import Profile from "./pages/Profile/Profile";
 import OneProd from "./pages/OneProd/OneProd";
 import "./App.css";
+import Catalog from "./pages/Catalog/Catalog";
 
 function App() {
   const { userId } = useInfoContext();
@@ -22,6 +23,7 @@ function App() {
       <Routes>
         <Route index path="/" element={<Home />} />
         <Route index path="/prod/:prodId" element={<OneProd />} />
+        <Route index path="/catalog" element={<Catalog />} />
         <Route path="/profile" element={!userId ? <Navigate to="/" replace /> : <Profile />} />
         <Route path="*" element={<Navigate to="/" replace />}/>
         {/* <Route path="*" element={<Navigate to="/" replace /> : <OneProd /> } /> */}

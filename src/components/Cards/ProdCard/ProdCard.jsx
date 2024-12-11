@@ -9,11 +9,6 @@ const ProdCard = () => {
   const isTop = true;
   const discount = 20;
 
-  
-  const toBag = (e) => {
-    e.preventDefault();
-  };
-
   return (
     <Link to={`/prod/1234-1234`} className="prod-card">
       <div className="prod-card__head">

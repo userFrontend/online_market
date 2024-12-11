@@ -1,0 +1,115 @@
+.catalog {
+  margin-bottom: 80px;
+  &__container {
+    display: flex;
+    gap: 20px;
+    &__aside {
+      width: 290px;
+      .links {
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        li {
+          font-size: 16px;
+          color: var(--secondary-text-color);
+          &:first-child {
+            color: black;
+            font-size: 24px;
+            font-weight: 600;
+          }
+        }
+      }
+      .filter {
+        padding: 20px;
+        color: var(--primary-text-color);
+        h2 {
+          font-size: 24px;
+          font-weight: 600;
+          text-transform: uppercase;
+        }
+        button {
+          padding: 10px 18px 10px 0;
+          font-size: 14px;
+          font-weight: 500px;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          width: 100%;
+          border: none;
+          outline: none;
+          background: none;
+          .button__icon {
+            transform: rotateZ(0);
+            display: inline-block;
+          }
+          .open {
+            transform: rotateZ(180deg);
+          }
+        }
+        .accordion {
+          max-height: 0;
+          padding: 0;
+          overflow: hidden;
+          transition: max-height 0.3s linear;
+          border-bottom: 1px solid #dfe1e3;
+          display: flex;
+          flex-direction: column;
+          gap: 10px;
+          .input-box {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            input {
+              height: 18px;
+              width: 18px;
+            }
+            label {
+              display: inline-block;
+              font-size: 14px;
+            }
+          }
+        }
+        .apply {
+          width: 100%;
+          margin-top: 10px;
+          border-radius: 4px;
+          padding: 12px;
+          display: flex;
+          justify-content: center;
+          font-size: 14px;
+          font-weight: 500;
+          border: 1px solid black;
+          color: var(--primary-text-color);
+          &:hover {
+            background-color: var(--primary-text-color);
+            color: white;
+          }
+        }
+      }
+    }
+    &__mside {
+      width: calc(100% - 310px);
+      &__top {
+        display: flex;
+        justify-content: space-between;
+        font-size: 14px;
+        margin-bottom: 30px;
+        p {
+          text-transform: uppercase;
+        }
+        .sort {
+          text-transform: uppercase;
+        }
+      }
+      &__down{
+        display: grid;
+        gap: 20px;
+        grid-template-columns: 1fr 1fr 1fr;
+      }
+    }
+  }
+}
+.recently{
+  margin-bottom: 80px;
+}
