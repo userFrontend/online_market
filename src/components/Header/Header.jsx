@@ -75,7 +75,9 @@ const Header = () => {
           </div>
           <div className="cart">
             {cartItems?.length === 0 ? (
-              <p>Savatcha bo'sh.</p>
+              <div className="no_cart">
+                No Cart
+              </div>
             ) : (
               <div className='cart_box'>
                 {cartItems.map(item => (
@@ -83,7 +85,7 @@ const Header = () => {
                     <img src="/images/img.png" alt="cart_img" />
                     <div className="cart_body">
                       <h3>{item.name}</h3>
-                      <span>${item.price * item.quantity}</span>
+                      <span className='price'>${(item.price * item.quantity).toFixed(2)}</span>
                       <div className="cart_btn">
                         <div className="cart_controls">
                           <button onClick={() => decrement(item.id)}>-</button>
@@ -95,7 +97,10 @@ const Header = () => {
                     </div>
                  </div>
                ))}
-               <h3>Umumiy narx: {totalPrice} so'm</h3>
+              <div className="cart_footer">
+                <h3><span>SUBTOTAL:</span> ${totalPrice}</h3>
+                <button>Check Out</button>
+              </div>
              </div>
             )}
           </div>

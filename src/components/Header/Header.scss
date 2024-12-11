@@ -49,6 +49,11 @@ header{
 
     }
 }
+.no_cart{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 .cart_box{
     padding: 20px;
     .cart_item{
@@ -68,6 +73,9 @@ header{
             flex-direction: column;
             justify-content: space-between;
             gap: 20px;
+        }
+        .price{
+            font-weight: 400;
         }
         .cart_btn{
             display: flex;
@@ -97,6 +105,30 @@ header{
                 background: transparent;
                 font-size: 16px;
             }
+        }
+    }
+    .cart_footer{
+        border-top: 1px solid rgba(128, 128, 128, 0.452);
+        background-color: white;
+        width: 100%;
+        h3{
+            padding: 20px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 20px;
+            span{
+                color: gray;
+                font-weight: 400;
+            }
+        }
+        button{
+            border: none;
+            width: 100%;
+            padding: 15px;
+            font-size: 17px;
+            font-weight: bold;
+            background-color: #F8E5E7;
         }
     }
 }

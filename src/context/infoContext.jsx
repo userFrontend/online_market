@@ -66,7 +66,7 @@ export const InfoProvider = ({children}) => {
     const totalPrice = cartItems.reduce(
       (total, item) => total + item.price * item.quantity,
       0
-    );
+    ).toFixed(2);
 
     useEffect(() => {
         const getUser = async () => {
