@@ -1,13 +1,20 @@
 import { Link } from "react-router-dom";
 import { Icons } from "../../../utils/icons";
-import "./ProdCard.scss";
 import Rating from "../../Rating/Rating";
 import { useInfoContext } from "../../../context/infoContext";
+import "./ProdCard.scss";
 
-const ProdCard = () => {
-  const {addToCart } = useInfoContext()
+const ProdCard = ({_id}) => {
+  const { addToCart, cartItems } = useInfoContext();
   const isTop = true;
   const discount = 20;
+
+  const currentProd = cartItems.find(
+    (el) => el.id == _id
+  ) || { id: _id, name: "Soft Finish", price: 19.6 };
+
+  console.log(currentProd);
+  
 
   return (
     <Link to={`/prod/1234-1234`} className="prod-card">
@@ -31,7 +38,15 @@ const ProdCard = () => {
         <p className="prod-card__body__price">32$</p>
       </div>
       <div className="prod-card__foot">
-        <button onClick={() => addToCart({id: Math.floor(Math.random() * 10), name: 'Soft Finish', price: 19.60})}>Add To Bag</button>
+        {currentProd.quantity ? (
+          <button onClick={(e) => addToCart(e, currentProd)}>
+            +++
+          </button>
+        ) : (
+          <button onClick={(e) => addToCart(e, currentProd)}>
+            Add To Bag
+          </button>
+        )}
       </div>
     </Link>
   );

@@ -1,6 +1,10 @@
 .custom-swiper {
   .swiper {
     z-index: 10;
+    &-slide{
+      opacity: 1 !important;
+      text-align: start;
+    }
     &-pagination-bullets {
       top: 560px;
       height: 10px;

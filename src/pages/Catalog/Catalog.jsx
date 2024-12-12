@@ -8,7 +8,6 @@ const Catalog = () => {
   for (let i = 0; i < 18; i++) {
     arr[i] = i;
   }
-  console.log(arr);
 
   const toggleAccordion = (e) => {
     e.preventDefault();
@@ -191,7 +190,7 @@ const Catalog = () => {
             </div>
             <div className="catalog__container__mside__down">
               {arr.map((el) => (
-                <ProdCard key={el} />
+                <ProdCard key={el} _id={el} />
               ))}
             </div>
           </div>
