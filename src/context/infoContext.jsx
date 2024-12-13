@@ -1,7 +1,7 @@
 
 import { createContext, useContext, useEffect, useState } from "react";
 import { changeLang } from "../language";
-import { getOneReq } from "../api/getRequeset";
+import { getOneReq, getReq } from "../api/getRequeset";
 
 
 const InfoContext = createContext()
@@ -15,6 +15,21 @@ export const InfoProvider = ({children}) => {
     // const [theme, setTheme] = useState(localStorage.getItem("mode") || 'light');
     const initialCart = JSON.parse(localStorage.getItem('cart')) || [];
     const [cartItems, setCartItems] = useState(initialCart);
+    const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    const getProd = async () => {
+      try {
+        const res = await getReq('prod')
+        console.log(res);
+        
+      } catch (error) {
+        console.log(error);
+        
+      }
+    } 
+    getProd()
+  }, []);
   
     // Savatchani localStorage ga saqlash
     useEffect(() => {
