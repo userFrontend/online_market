@@ -1,4 +1,7 @@
 import { Swiper, SwiperSlide } from "swiper/react";
+
+import Title from "../Title/Title";
+import BlogCard from "../Cards/BlogCard/BlogCard";
 import ProdCard from "./../Cards/ProdCard/ProdCard";
 
 import "swiper/css";
@@ -9,11 +12,8 @@ import "./CustomSwiper.scss";
 
 // import required modules
 import { Pagination, Navigation, Autoplay } from "swiper/modules";
-import Title from "../Title/Title";
-import BlogCard from "../Cards/BlogCard/BlogCard";
 
 const CustomSwiper = ({ text, blog }) => {
-
   return (
     <div className="custom-swiper">
       <Title>{text}</Title>
