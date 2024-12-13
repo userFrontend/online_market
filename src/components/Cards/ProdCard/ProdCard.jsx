@@ -12,8 +12,6 @@ const ProdCard = ({_id}) => {
   const currentProd = cartItems.find(
     (el) => el.id == _id
   ) || { id: _id, name: "Soft Finish", price: 19.6 };
-
-  console.log(currentProd);
   
 
   return (
