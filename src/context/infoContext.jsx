@@ -1,7 +1,6 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { changeLang } from "../language";
 import { getOneReq, getReq } from "../api/getRequeset";
-import axios from "axios";
 
 const InfoContext = createContext();
 
@@ -20,29 +19,30 @@ export const InfoProvider = ({ children }) => {
     const getProd = async () => {
       try {
         // APIga so'rov yuborish
-        const response = await axios.post(
-          "https://api.billz.uz/v1/",
-          {
-            jsonrpc: "2.0",
-            method: "products.get",
-            params: {
-              LastUpdatedDate: "2018-03-21T18:19:25Z",
-              WithProductPhotoOnly: 0,
-              IncludeEmptyStocks: 0,
-            },
-            id: "1",
-          },
-          {
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: `Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJtYXJkb25tZS51eiIsImlhdCI6MTczNDA5MTYyMiwiZXhwIjoxNzM0MDk1MjIyLCJzdWIiOiJiZWF1dHlicmFuZC5lY29tbWVyY2UifQ.cntR-UGaY-0CTB7Bf9WPuYkRMqQyh3YwNxMz2EQ1CwE`,
-            },
-          }
-        );
+        const response = await getReq("prod")
+        // const response = await axios.post(
+        //   "https://api.billz.uz/v1/",
+        //   {
+        //     jsonrpc: "2.0",
+        //     method: "products.get",
+        //     params: {
+        //       LastUpdatedDate: "2018-03-21T18:19:25Z",
+        //       WithProductPhotoOnly: 0,
+        //       IncludeEmptyStocks: 0,
+        //     },
+        //     id: "1",
+        //   },
+        //   {
+        //     headers: {
+        //       "Content-Type": "application/json",
+        //       Authorization: `Bearer ${token}`,
+        //     },
+        //   }
+        // );
 
         setProducts(response.data.result)
 
-        // console.log(response.data.result);
+        console.log(response);
 
         // Ma'lumotlarni qaytarish
       } catch (error) {
@@ -58,7 +58,8 @@ export const InfoProvider = ({ children }) => {
   }, [cartItems]);
 
   // Mahsulotni savatchaga qo'shish funksiyasi
-  const addToCart = (product) => {
+  const addToCart = (e, product) => {
+    e.preventDefault()
     setCartItems((prevItems) => {
       const existingItem = prevItems.find((item) => item.id === product.id);
       if (existingItem) {
