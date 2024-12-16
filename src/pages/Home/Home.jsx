@@ -1,11 +1,18 @@
 import SetCard from "../../components/Cards/SetCard/SetCard";
 import CustomSwiper from "../../components/Swiper/CustomSwiper";
 import Title from "../../components/Title/Title";
+import { useInfoContext } from "../../context/infoContext";
 import { Icons } from "../../utils/icons";
 
 import "./Home.scss";
 
 const Home = () => {
+
+  const {products} = useInfoContext()
+
+  console.log(products);
+  
+
   return (
     <main>
       <section className="hero">

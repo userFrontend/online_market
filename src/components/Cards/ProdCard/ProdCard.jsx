@@ -12,7 +12,7 @@ const ProdCard = ({_id}) => {
   const currentProd = cartItems.find(
     (el) => el.id == _id
   ) || { id: _id, name: "Soft Finish", price: 19.6 };
-
+  
 
   return (
     <Link to={`/prod/1234-1234`} className="prod-card">
