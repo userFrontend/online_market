@@ -13,8 +13,6 @@ const ProdCard = ({_id}) => {
     (el) => el.id == _id
   ) || { id: _id, name: "Soft Finish", price: 19.6 };
 
-  console.log(currentProd);
-  
 
   return (
     <Link to={`/prod/1234-1234`} className="prod-card">
