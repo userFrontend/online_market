@@ -4,46 +4,40 @@ import Rating from "../../Rating/Rating";
 import { useInfoContext } from "../../../context/infoContext";
 import "./ProdCard.scss";
 
-const ProdCard = ({_id}) => {
-  const { addToCart, cartItems } = useInfoContext();
-  const isTop = true;
-  const discount = 20;
+const ProdCard = ({ data }) => {
+  const { addToCart, cartItems, products } = useInfoContext();
+  // const isTop = true;
 
-  const currentProd = cartItems.find(
-    (el) => el.id == _id
-  ) || { id: _id, name: "Soft Finish", price: 19.6 };
-  
+  const currentProd = cartItems.find((el) => el.ID == data.ID) || products.find(el => el.ID ==data.ID);
 
   return (
-    <Link to={`/prod/1234-1234`} className="prod-card">
+    <Link to={`/prod/${data.ID}`} className="prod-card">
       <div className="prod-card__head">
         <ul className="stickers">
-          {isTop ? <li className="top">Top Rated</li> : ""}
-          {discount ? <li className="discount">-{discount}%</li> : ""}
+          {/* {isTop ? <li className="top">Top Rated</li> : ""} */}
+          {data.discountAmount ? (
+            <li className="discount">-{data.discountAmount}%</li>
+          ) : (
+            ""
+          )}
         </ul>
         <img src="images/img.png" alt="img" />
         <Icons.likeDefault />
       </div>
 
       <div className="prod-card__body">
-        <h2 className="prod-card__body__title">
-          All-Around Safe Block Essence Sun SPF45+
-        </h2>
-        <Rating rating={4} />
+        <h2 className="prod-card__body__title">{data.name}</h2>
+        <Rating rating={(data.qty / 2).toFixed(0)} />
         <p className="prod-card__body__description">
           Skin Reinforcement Gel Type Cream
         </p>
-        <p className="prod-card__body__price">32$</p>
+        <p className="prod-card__body__price">{data.priceUSD}$</p>
       </div>
       <div className="prod-card__foot">
         {currentProd.quantity ? (
-          <button onClick={(e) => addToCart(e, currentProd)}>
-            +++
-          </button>
+          <button onClick={(e) => addToCart(e, currentProd)}>+++</button>
         ) : (
-          <button onClick={(e) => addToCart(e, currentProd)}>
-            Add To Bag
-          </button>
+          <button onClick={(e) => addToCart(e, currentProd)}>Add To Bag</button>
         )}
       </div>
     </Link>

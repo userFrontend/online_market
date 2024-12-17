@@ -8,6 +8,7 @@ export const useInfoContext = () => useContext(InfoContext);
 
 export const InfoProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState(null);
+  const [loading, setLoading] = useState(false);
   const [userId, setUserId] = useState(localStorage.getItem("user_id") || null);
   // const [language, setLanguage] = useState(changeLang(localStorage.getItem("language")) || changeLang('uz'))
   // const [theme, setTheme] = useState(localStorage.getItem("mode") || 'light');
@@ -19,7 +20,8 @@ export const InfoProvider = ({ children }) => {
     const getProd = async () => {
       try {
         // APIga so'rov yuborish
-        const response = await getReq("prod")
+        setLoading(true)
+        const response = await getReq("prod");
         // const response = await axios.post(
         //   "https://api.billz.uz/v1/",
         //   {
@@ -40,13 +42,15 @@ export const InfoProvider = ({ children }) => {
         //   }
         // );
 
-        setProducts(response.data.result)
+        setProducts(response.data.prod.slice(1400, 1500));
 
-        console.log(response);
+        console.log(response.data.prod.slice(1400, 1500));
 
         // Ma'lumotlarni qaytarish
       } catch (error) {
         console.error("Error fetching products:", error.message || error);
+      } finally {
+        setLoading(false);
       }
     };
     getProd();
@@ -59,7 +63,7 @@ export const InfoProvider = ({ children }) => {
 
   // Mahsulotni savatchaga qo'shish funksiyasi
   const addToCart = (e, product) => {
-    e.preventDefault()
+    e.preventDefault();
     setCartItems((prevItems) => {
       const existingItem = prevItems.find((item) => item.id === product.id);
       if (existingItem) {
@@ -143,7 +147,8 @@ export const InfoProvider = ({ children }) => {
     setCartItems,
     increment,
     decrement,
-    products
+    products,
+    loading,
   };
 
   return <InfoContext.Provider value={value}>{children}</InfoContext.Provider>;
