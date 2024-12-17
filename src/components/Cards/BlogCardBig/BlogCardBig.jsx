@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import "./BlogCardBig.scss";
 
 const BlogCardBig = ({ type }) => {
@@ -23,7 +24,7 @@ const BlogCardBig = ({ type }) => {
           <li className="tag"># GreatGift</li>
         </ul>
         <div className="blog-card-big__info__buttons">
-          <button>Read More</button>
+          <Link to="/blog/1">Read More</Link>
         </div>
       </div>
       <div
