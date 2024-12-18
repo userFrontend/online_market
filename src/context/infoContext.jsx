@@ -1,5 +1,5 @@
 import { createContext, useContext, useEffect, useState } from "react";
-import { changeLang } from "../language";
+// import { changeLang } from "../language";
 import { getOneReq, getReq } from "../api/getRequeset";
 
 const InfoContext = createContext();
@@ -8,6 +8,7 @@ export const useInfoContext = () => useContext(InfoContext);
 
 export const InfoProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState(null);
+  const [loading, setLoading] = useState(false);
   const [userId, setUserId] = useState(localStorage.getItem("user_id") || null);
   // const [language, setLanguage] = useState(changeLang(localStorage.getItem("language")) || changeLang('uz'))
   // const [theme, setTheme] = useState(localStorage.getItem("mode") || 'light');
@@ -19,7 +20,8 @@ export const InfoProvider = ({ children }) => {
     const getProd = async () => {
       try {
         // APIga so'rov yuborish
-        const response = await getReq("prod")
+        setLoading(true);
+        const response = await getReq("prod");
         // const response = await axios.post(
         //   "https://api.billz.uz/v1/",
         //   {
@@ -40,13 +42,15 @@ export const InfoProvider = ({ children }) => {
         //   }
         // );
 
-        console.log(response);
-        setProducts(response.data.result)
+        setProducts(response.data.prod.slice(1400, 1500));
 
+        console.log(response.data.prod.slice(1400, 1500));
 
         // Ma'lumotlarni qaytarish
       } catch (error) {
-        console.error(error);
+        console.error("Error fetching products:", error.message || error);
+      } finally {
+        setLoading(false);
       }
     };
     getProd();
@@ -59,35 +63,28 @@ export const InfoProvider = ({ children }) => {
 
   // Mahsulotni savatchaga qo'shish funksiyasi
   const addToCart = (e, product) => {
-    e.preventDefault()
-    setCartItems((prevItems) => {
-      const existingItem = prevItems.find((item) => item.id === product.id);
-      if (existingItem) {
-        return prevItems.map((item) =>
-          item.id === product.id
-            ? { ...item, quantity: item.quantity + 1 }
-            : item
-        );
-      } else {
-        return [...prevItems, { ...product, quantity: 1 }];
-      }
-    });
+    e.preventDefault();
+    console.log(product.ID);
+
+    setCartItems((prevItems) => [...prevItems, { ...product, quantity: 1 }]);
   };
 
   // Mahsulot miqdorini oshirish
-  const increment = (productId) => {
+  const increment = (e, productId) => {
+    e.preventDefault();
     setCartItems((prevItems) =>
       prevItems.map((item) =>
-        item.id === productId ? { ...item, quantity: item.quantity + 1 } : item
+        item.ID == productId ? { ...item, quantity: item.quantity + 1 } : item
       )
     );
   };
 
   // Mahsulot miqdorini kamaytirish
-  const decrement = (productId) => {
+  const decrement = (e, productId) => {
+    e.preventDefault();
     setCartItems((prevItems) =>
       prevItems.map((item) =>
-        item.id === productId && item.quantity > 1
+        item.ID == productId && item.quantity > 1
           ? { ...item, quantity: item.quantity - 1 }
           : item
       )
@@ -95,9 +92,10 @@ export const InfoProvider = ({ children }) => {
   };
 
   // Mahsulotni savatchadan o'chirish
-  const removeFromCart = (productId) => {
+  const removeFromCart = (e, productId) => {
+    e.preventDefault();
     setCartItems((prevItems) =>
-      prevItems.filter((item) => item.id !== productId)
+      prevItems.filter((item) => item.ID !== productId)
     );
   };
 
@@ -143,7 +141,8 @@ export const InfoProvider = ({ children }) => {
     setCartItems,
     increment,
     decrement,
-    products
+    products,
+    loading,
   };
 
   return <InfoContext.Provider value={value}>{children}</InfoContext.Provider>;

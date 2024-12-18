@@ -13,7 +13,7 @@ import "./CustomSwiper.scss";
 // import required modules
 import { Pagination, Navigation, Autoplay } from "swiper/modules";
 
-const CustomSwiper = ({ text, blog }) => {
+const CustomSwiper = ({ text, blog, data }) => {
   return (
     <div className="custom-swiper">
       <Title>{text}</Title>
@@ -104,24 +104,13 @@ const CustomSwiper = ({ text, blog }) => {
           modules={[Autoplay, Pagination, Navigation]}
           className="mySwiper"
         >
-          <SwiperSlide>
-            <ProdCard />
-          </SwiperSlide>
-          <SwiperSlide>
-            <ProdCard />
-          </SwiperSlide>
-          <SwiperSlide>
-            <ProdCard />
-          </SwiperSlide>
-          <SwiperSlide>
-            <ProdCard />
-          </SwiperSlide>
-          <SwiperSlide>
-            <ProdCard />
-          </SwiperSlide>
-          <SwiperSlide>
-            <ProdCard />
-          </SwiperSlide>
+          {data.map((el) => {
+            return (
+              <SwiperSlide key={el.ID}>
+                <ProdCard data={el} />
+              </SwiperSlide>
+            );
+          })}
         </Swiper>
       )}
     </div>

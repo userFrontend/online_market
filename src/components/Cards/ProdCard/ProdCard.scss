@@ -74,10 +74,15 @@
   }
   &__foot {
     padding: 20px;
+    display: flex;
+    align-items: center;
     margin-top: auto;
+    width: 100%;
+    span{
+      margin: 0 auto;
+
+    }
     button {
-      width: 100%;
-      font-size: 14px;
       border: 1px solid #3a3a3a;
       border-radius: 4px;
       box-shadow: none;
@@ -86,11 +91,23 @@
       padding: 10px 0;
       text-shadow: none;
       transition: all linear 0.3s;
+      background: none;
+      line-height: 22px;
       &:hover {
         color: white;
         background-color: #3a3a3a;
       }
     }
+    .add-btn {
+      width: 100%;
+      font-size: 14px;
+    }
+    .quantity-btn{
+      width: 35%;
+      min-width: 30px;
+      font-size: 22px;
+    }
+
   }
   &:hover {
     .prod-card__body {

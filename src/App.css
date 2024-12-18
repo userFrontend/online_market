@@ -4,7 +4,7 @@
   --secondary-color: #b0a6bd;
   --primary-text-color: #383533;
   --secondary-text-color: #697586;
-  --bg-color: #fff;
+  --bg-color: #FCFCFC;
   --input-color: black;
 }
 * {
@@ -34,6 +34,7 @@ ul {
 body,
 html {
   font-family: sans-serif;
+  background-color: var(--bg-color);
 }
 
 button {
