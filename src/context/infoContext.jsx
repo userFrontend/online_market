@@ -40,13 +40,13 @@ export const InfoProvider = ({ children }) => {
         //   }
         // );
 
+        console.log(response);
         setProducts(response.data.result)
 
-        console.log(response);
 
         // Ma'lumotlarni qaytarish
       } catch (error) {
-        console.error("Error fetching products:", error.message || error);
+        console.error(error);
       }
     };
     getProd();

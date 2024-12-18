@@ -58,16 +58,16 @@ const Header = () => {
                     </li>
                 </ul>
                 <div className="options">
-                  <div className='option_items'><LuSearch className='icon'/> SEARCH</div>
+                  <div className='option_items'><LuSearch className='icon'/> ПОИСК</div>
                   <AuthModal/>
-                  <div className='option_items' onClick={showDrawer}><SlHandbag className='icon'/> CART</div>
+                  <div className='option_items' onClick={showDrawer}><SlHandbag className='icon'/> КОРЗИНА </div>
                 </div>
-                <div className='media_item' onClick={showDrawer}><SlHandbag className='icon'/>CART</div>
+                <div className='media_item' onClick={showDrawer}><SlHandbag className='icon'/>КОРЗИНА </div>
             </nav>
         </div>
         <Drawer className='menu_box' title={false} closeIcon={false} onClose={showDrawer} open={open}>
           <div className="header_menu_cart">
-            <h3>CART</h3>
+            <h3>КОРЗИНА </h3>
             <button onClick={showDrawer}><MdClose /></button>
             <div className="bottom">
               <Icons.roseLeft/>
@@ -98,8 +98,8 @@ const Header = () => {
                  </div>
                ))}
               <div className="cart_footer">
-                <h3><span>SUBTOTAL:</span> ${totalPrice}</h3>
-                <button>Check Out</button>
+                <h3><span>ИТОГО:</span> ${totalPrice}</h3>
+                <button>ОФОРМИТЬ</button>
               </div>
              </div>
             )}
@@ -107,10 +107,10 @@ const Header = () => {
         </Drawer>
         <Drawer className='menu_box' closeIcon={false} title={false} onClose={toggleBurger} open={showBurger}>
           <div className="header_menu">
-            <h3>MENU</h3>
+            <h3>МЕНЮ</h3>
             <button onClick={toggleBurger}><MdClose /></button>
           </div>
-          <Link className='option_menu'><LuSearch className='icon'/> SEARCH</Link>
+          <Link className='option_menu'><LuSearch className='icon'/> ПОИСК</Link>
           <div className='option_menu'><AuthModal/></div>
           <ul>
             <li>

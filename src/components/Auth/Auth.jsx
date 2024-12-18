@@ -51,7 +51,7 @@ const AuthModal = () => {
   return (
     <>
       <div className="option_items" onClick={showModal}>
-        <FaRegUser className="icon" /> ACCOUNT
+        <FaRegUser className="icon" /> АККАУНТ
       </div>
       <Modal
         centered
