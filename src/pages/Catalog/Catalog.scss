@@ -109,9 +109,11 @@
         }
       }
       &__down {
-        display: grid;
-        gap: 20px;
-        grid-template-columns: 1fr 1fr 1fr;
+        &__wrapper {
+          display: grid;
+          gap: 20px;
+          grid-template-columns: 1fr 1fr 1fr;
+        }
       }
     }
   }
@@ -233,9 +235,9 @@
           }
         }
         &__down {
-          display: grid;
-          gap: 20px;
-          grid-template-columns: 1fr 1fr;
+          &__wrapper {
+            grid-template-columns: 1fr 1fr;
+          }
         }
       }
     }
@@ -355,9 +357,9 @@
           }
         }
         &__down {
-          display: grid;
-          gap: 20px;
-          grid-template-columns: 1fr 1fr 1fr;
+          &__wrapper {
+            grid-template-columns: 1fr 1fr 1fr;
+          }
         }
       }
     }
@@ -477,9 +479,9 @@
           }
         }
         &__down {
-          display: grid;
-          gap: 20px;
-          grid-template-columns: 1fr 1fr;
+          &__wrapper {
+            grid-template-columns: 1fr 1fr;
+          }
         }
       }
     }
@@ -599,10 +601,11 @@
           }
         }
         &__down {
-          display: grid;
-          justify-items: center;
-          gap: 10px;
-          grid-template-columns: 1fr;
+          &__wrapper {
+            justify-items: center;
+            gap: 10px;
+            grid-template-columns: 1fr;
+          }
         }
       }
     }

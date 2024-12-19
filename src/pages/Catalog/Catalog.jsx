@@ -1,12 +1,38 @@
 import { Icons } from "../../utils/icons";
-import "./Catalog.scss";
 import ProdCard from "./../../components/Cards/ProdCard/ProdCard";
 import CustomSwiper from "./../../components/Swiper/CustomSwiper";
 import { useInfoContext } from "../../context/infoContext";
 import Loading from "../../components/Loading/Loading";
+import "./Catalog.scss";
+import Pagination from "../../components/Pagination/Pagination";
+import { useEffect, useState } from "react";
+import { getPage } from "../../api/getRequeset";
 
 const Catalog = () => {
-  const { products, loading } = useInfoContext();
+  const { products, loading, setLoading } = useInfoContext();
+
+  const [prod, setProd] = useState(products);
+
+  const queryParams = new URLSearchParams(window.location.search);
+  const [page, setPage] = useState(parseInt(queryParams.get("page")) || 1);
+
+  console.log(page);
+  useEffect(() => {
+    const getResProd = async () => {
+      try {
+        setLoading(true);
+        const response = await getPage(`prod`, page);
+        console.log(response.data);
+        setProd(response.data);
+      } catch (error) {
+        console.error("Error fetching products:", error.message || error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    getResProd();
+  }, [page]);
+  
 
   const toggleAccordion = (e) => {
     e.preventDefault();
@@ -216,9 +242,12 @@ const Catalog = () => {
                   </div>
                 </div>
                 <div className="catalog__container__mside__down">
-                  {products.map((el) => (
-                    <ProdCard key={el.ID} data={el} />
-                  ))}
+                  <div className="catalog__container__mside__down__wrapper">
+                    {prod?.prod?.map((el) => (
+                      <ProdCard key={el.ID} data={el} />
+                    ))}
+                  </div>
+                  <Pagination totalItems={prod?.total} changePage={setPage} />
                 </div>
               </div>
             </div>

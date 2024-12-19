@@ -8,24 +8,24 @@ const ProdCard = ({ data }) => {
   const {
     addToCart,
     cartItems,
-    products,
     decrement,
     increment,
     removeFromCart,
   } = useInfoContext();
   // const isTop = true;
 
+
+
   const currentProd =
-    cartItems.find((el) => el.ID == data.ID) ||
-    products.find((el) => el.ID == data.ID);
+    cartItems.find((el) => el.ID == data.ID) || data;
 
   return (
     <div className="prod-card">
       <div className="prod-card__head">
         <ul className="stickers">
           {/* {isTop ? <li className="top">Top Rated</li> : ""} */}
-          {currentProd.discountAmount ? (
-            <li className="discount">-{currentProd.discountAmount}%</li>
+          {currentProd?.discountAmount ? (
+            <li className="discount">-{currentProd?.discountAmount}%</li>
           ) : (
             ""
           )}
@@ -35,14 +35,14 @@ const ProdCard = ({ data }) => {
       </div>
 
       <div className="prod-card__body">
-        <h2 className="prod-card__body__title">{currentProd.name}</h2>
-        <Rating rating={(currentProd.qty / 2).toFixed(0)} />
-        <Link className="card__link" to={`/prod/${currentProd.ID}`}>
+        <h2 className="prod-card__body__title">{currentProd?.name}</h2>
+        <Rating rating={(currentProd?.qty / 2).toFixed(0)} />
+        <Link className="card__link" to={`/prod/${currentProd?.ID}`}>
           <p className="prod-card__body__description">
             Skin Reinforcement Gel Type Cream
           </p>
         </Link>
-        <p className="prod-card__body__price">{currentProd.priceUSD}$</p>
+        <p className="prod-card__body__price">{currentProd?.priceUSD}$</p>
       </div>
       <div className="prod-card__foot">
         {currentProd?.quantity ? (

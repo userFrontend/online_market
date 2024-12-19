@@ -2,7 +2,6 @@ import { useState } from 'react'
 import './Header.scss'
 import { Link, NavLink } from 'react-router-dom'
 import { useInfoContext } from '../../context/infoContext'
-import { FaRegUser } from 'react-icons/fa'
 import { SlHandbag } from 'react-icons/sl'
 import { LuSearch } from 'react-icons/lu'
 import { Collapse, Drawer } from "antd";

@@ -20,11 +20,9 @@ export const InfoProvider = ({ children }) => {
     const getProd = async () => {
       try {
         setLoading(true);
-        const response = await getReq("prod");
-        console.log(response.data.prod);
+        const response = await getReq(`prod`);
+        // console.log(response.data);
         setProducts(response.data.prod);
-
-        // Ma'lumotlarni qaytarish
       } catch (error) {
         console.error("Error fetching products:", error.message || error);
       } finally {
@@ -33,6 +31,11 @@ export const InfoProvider = ({ children }) => {
     };
     getProd();
   }, []);
+  // const handlePageChange = (page) => {
+  //   setCurrentPage(page);
+  //   fetchData(page);
+  //   window.history.pushState(null, '', `?page=${page}`);
+  // };
 
   // Savatchani localStorage ga saqlash
   useEffect(() => {
@@ -115,6 +118,7 @@ export const InfoProvider = ({ children }) => {
     decrement,
     products,
     loading,
+    setLoading,
   };
 
   return <InfoContext.Provider value={value}>{children}</InfoContext.Provider>;
