@@ -36,9 +36,10 @@ const Header = () => {
                   <div className='burger_menu_item' onClick={toggleBurger}><FiMenu className='icon'/> Menu</div>
                 </div>
                 <div className="logo_site">
-                  <img src="/images/the.png" alt="logo" />
+                  <Icons.logo/>
+                  {/* <img src="/images/the.png" alt="logo" />
                   <img src="/images/text.png" alt="logo" />
-                  <img src="/images/heart.png" alt="logo" />
+                  <img src="/images/heart.png" alt="logo" /> */}
                 </div>
                 <ul className='header_list'>
                     <li>
@@ -80,8 +81,8 @@ const Header = () => {
               </div>
             ) : (
               <div className='cart_box'>
-                {cartItems.map(item => (
-                   <div key={item.ID} className="cart_item">
+                {cartItems.map((item, i) => (
+                   <div key={i} className="cart_item">
                     <img src="/images/img.png" alt="cart_img" />
                     <div className="cart_body">
                       <h3>{item.name}</h3>
