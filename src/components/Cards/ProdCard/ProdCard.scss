@@ -1,4 +1,5 @@
 .prod-card {
+  position: relative;
   display: flex;
   flex-direction: column;
   max-width: 290px;
@@ -6,6 +7,11 @@
   height: 540px;
   background-color: white;
   border-radius: 6px;
+  .card__link::after{
+    content: '';
+    position: absolute;
+    inset: 0;
+  }
   &__head {
     position: relative;
     height: 290px;
@@ -83,6 +89,7 @@
 
     }
     button {
+      position: relative;
       border: 1px solid #3a3a3a;
       border-radius: 4px;
       box-shadow: none;

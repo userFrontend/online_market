@@ -40,16 +40,12 @@ export const InfoProvider = ({ children }) => {
   }, [cartItems]);
 
   // Mahsulotni savatchaga qo'shish funksiyasi
-  const addToCart = (e, product) => {
-    e.preventDefault();
-    console.log(product.ID);
-
+  const addToCart = (product) => {
     setCartItems((prevItems) => [...prevItems, { ...product, quantity: 1 }]);
   };
 
   // Mahsulot miqdorini oshirish
-  const increment = (e, productId) => {
-    e.preventDefault();
+  const increment = (productId) => {
     setCartItems((prevItems) =>
       prevItems.map((item) =>
         item.ID == productId ? { ...item, quantity: item.quantity + 1 } : item
@@ -58,8 +54,7 @@ export const InfoProvider = ({ children }) => {
   };
 
   // Mahsulot miqdorini kamaytirish
-  const decrement = (e, productId) => {
-    e.preventDefault();
+  const decrement = (productId) => {
     setCartItems((prevItems) =>
       prevItems.map((item) =>
         item.ID == productId && item.quantity > 1
@@ -70,8 +65,7 @@ export const InfoProvider = ({ children }) => {
   };
 
   // Mahsulotni savatchadan o'chirish
-  const removeFromCart = (e, productId) => {
-    e.preventDefault();
+  const removeFromCart = (productId) => {
     setCartItems((prevItems) =>
       prevItems.filter((item) => item.ID !== productId)
     );
@@ -79,7 +73,7 @@ export const InfoProvider = ({ children }) => {
 
   // Umumiy narxni hisoblash
   const totalPrice = cartItems
-    .reduce((total, item) => total + item.price * item.quantity, 0)
+    .reduce((total, item) => total + item.priceUSD * item.quantity, 0)
     .toFixed(2);
 
   useEffect(() => {

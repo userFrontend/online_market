@@ -81,16 +81,16 @@ const Header = () => {
             ) : (
               <div className='cart_box'>
                 {cartItems.map(item => (
-                   <div key={item.id} className="cart_item">
+                   <div key={item.ID} className="cart_item">
                     <img src="/images/img.png" alt="cart_img" />
                     <div className="cart_body">
                       <h3>{item.name}</h3>
-                      <span className='price'>${(item.price * item.quantity).toFixed(2)}</span>
+                      <span className='price'>${(item.priceUSD * item.quantity).toFixed(2)}</span>
                       <div className="cart_btn">
                         <div className="cart_controls">
-                          <button onClick={() => decrement(item.id)}>-</button>
+                          <button onClick={() => decrement(item.ID)}>-</button>
                           <span>{item.quantity}</span>
-                          <button onClick={() => increment(item.id)}>+</button>
+                          <button onClick={() => increment(item.ID)}>+</button>
                         </div>
                         <button className='remove_btn' onClick={() => removeFromCart(item.id)}><MdClose/></button>
                       </div>
@@ -99,7 +99,7 @@ const Header = () => {
                ))}
               <div className="cart_footer">
                 <h3><span>ИТОГО:</span> ${totalPrice}</h3>
-                <button>ОФОРМИТЬ</button>
+                <Link to='/checkout'><button>ОФОРМИТЬ</button></Link>
               </div>
              </div>
             )}
