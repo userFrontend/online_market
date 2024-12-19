@@ -39,19 +39,22 @@ const Header = () => {
                 </div>
                 <ul className='header_list'>
                     <li>
-                        <NavLink to='/catalog'>SHOP ALL</NavLink>
+                        <NavLink to='/catalog'>Макияж</NavLink>
                     </li>
                     <li>
-                        <NavLink to='/bestsellers'>BESTSELLERS</NavLink>
+                        <NavLink to='/bestsellers'>Для лица</NavLink>
                     </li>
                     <li>
-                        <NavLink to='/colliction'>COLLICTION</NavLink>
+                        <NavLink to='/colliction'>Для тела</NavLink>
                     </li>
                     <li>
-                        <NavLink to='/about'>ABOUT AS</NavLink>
+                        <NavLink to='/colliction'>Для волос</NavLink>
                     </li>
                     <li>
-                        <NavLink to='/blog'>BLOG</NavLink>
+                        <NavLink to='/about'>Аксессуары</NavLink>
+                    </li>
+                    <li>
+                        <NavLink to='/blog'>Бренды</NavLink>
                     </li>
                 </ul>
                 <div className="options">

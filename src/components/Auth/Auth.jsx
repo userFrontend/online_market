@@ -1,51 +1,59 @@
 import { useState } from 'react';
-import { DatePicker, Space, Modal } from 'antd';
+import { Modal } from 'antd';
 import { FaRegUser } from 'react-icons/fa';
-import PhoneInput from '../Input/Input';
 import './Auth.scss';
-import { sendVerication } from '../../api/authRequest';
 
 const AuthModal = () => {
   const [open, setOpen] = useState(false);
-  const [sendSMS, setSendSMS] = useState(false);
-  const [phone, setPhone] = useState('+998 (__) ___-__-__');
-  const [verificationCode, setVerificationCode] = useState('');
-  const [expectedCode, setExpectedCode] = useState(null);
+  const [isRegister, setIsRegister] = useState(false);
+  const [emailOrPhone, setEmailOrPhone] = useState('');
+  const [isPhone, setIsPhone] = useState(false);
+  const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const [name, setName] = useState('');
   const [error, setError] = useState('');
-  
+
   const showModal = () => {
     setOpen(!open);
-    setSendSMS(false);
-    setVerificationCode('');
+    setIsRegister(false);
+    setEmailOrPhone('');
+    setIsPhone(false);
+    setPassword('');
+    setConfirmPassword('');
+    setName('');
     setError('');
-    setExpectedCode(null);
   };
 
-  const cleanPhoneNumber = (formattedPhone) => {
-    return formattedPhone.replace(/[^\d]/g, '').slice(3); // "+998" ni olib tashlaymiz
-  };
-
-  const handleSendSMS = async () => {
-    // const cleanedPhone = cleanPhoneNumber(phone); // Toza telefon raqamini olamiz
-    try {
-      const { data } = await sendVerication({ phoneNumber: phone });
-      console.log('Server response:', data);
-      setExpectedCode(data.verificationCode);
-      setSendSMS(true);
-    } catch (error) {
-      console.log(error);
-      setError('Failed to send SMS. Please try again.');
+  const handleEmailOrPhoneChange = (e) => {
+    const value = e.target.value;
+    setEmailOrPhone(value);
+    if (value.startsWith('+') || value.startsWith('9')) {
+      setIsPhone(true);
+    } else {
+      setIsPhone(false);
     }
   };
 
   const handleSubmit = () => {
-    if (!error && verificationCode === expectedCode) {
-      const cleanedPhone = cleanPhoneNumber(phone);
-      console.log('Cleaned phone:', cleanedPhone);
-      
+    if (isRegister) {
+      if (!name || !emailOrPhone || !password || !confirmPassword) {
+        setError('All fields are required!');
+        return;
+      }
+      if (password !== confirmPassword) {
+        setError('Passwords do not match!');
+        return;
+      }
+      console.log('Registering:', { name, emailOrPhone, password });
     } else {
-      setError('Please verify the code first.');
+      if (!emailOrPhone || !password) {
+        setError('Email/Phone and Password are required!');
+        return;
+      }
+      console.log('Logging in:', { emailOrPhone, password });
     }
+    setError('');
+    setOpen(false);
   };
 
   return (
@@ -55,47 +63,63 @@ const AuthModal = () => {
       </div>
       <Modal
         centered
-        footer={
-          <div className='auth_footer'>
-            {sendSMS ? (
-            <button className="auth_btn" onClick={handleSubmit}>
-              Submit
-            </button>
-          ) : (
-            <button className="auth_btn" onClick={handleSendSMS}>
-              Send SMS
-            </button>
-          )}
-          </div>
-        }
+        footer={null}
         open={open}
-        onCancel={showModal}>
-        <div className="form">
-          <img src="/images/logo.png" alt="logo" />
-          <form>
-            {!sendSMS && (
-              <PhoneInput
-                phone={phone}
-                setPhone={setPhone}
+        onCancel={showModal}
+      >
+        <div className="auth_modal">
+          <div className="auth_tabs">
+            <span
+              className={!isRegister ? 'active' : ''}
+              onClick={() => setIsRegister(false)}
+            >
+              Войти
+            </span>
+            <span
+              className={isRegister ? 'active' : ''}
+              onClick={() => setIsRegister(true)}
+            >
+              Зарегистрироваться
+            </span>
+          </div>
+          <form className="auth_form">
+            {isRegister && (
+              <input
+                type="text"
+                placeholder="Имя / Фамилия"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
               />
             )}
-            {sendSMS && (
-              <>
-                <input required type="text" placeholder="Full Name" name='fullname'/>
-                <PhoneInput
-                  phone={phone}
-                  setPhone={setPhone}
-                />
-                <input required type="date" name='birthday'/>
-                <input required
-                  type="number"
-                  placeholder="Enter verification code"
-                  value={verificationCode}
-                  onChange={(e) => setVerificationCode(e.target.value)}
-                />
-                {error && <span className="error">{error}</span>}
-              </>
+            <input
+              type="text"
+              placeholder="E-mail или Телефон"
+              value={emailOrPhone}
+              onChange={handleEmailOrPhoneChange}
+            />
+            <input
+              type="password"
+              placeholder="Пароль"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+            {isRegister && (
+              <input
+                type="password"
+                placeholder="Повторите пароль"
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+              />
             )}
+            {isRegister && (
+              <label>
+                <input type="checkbox" /> Получать уведомления о скидках, новинках, акциях и новостях
+              </label>
+            )}
+            {error && <div className="auth_error">{error}</div>}
+            <button type="button" className="auth_btn" onClick={handleSubmit}>
+              {isRegister ? 'Зарегистрироваться' : 'Вход'}
+            </button>
           </form>
         </div>
       </Modal>

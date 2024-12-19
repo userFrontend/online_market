@@ -4,7 +4,7 @@
   --secondary-color: #b0a6bd;
   --primary-text-color: #383533;
   --secondary-text-color: #697586;
-  --bg-color: #FCFCFC;
+  --bg-color: #f9fafc;
   --input-color: black;
 }
 * {
@@ -21,9 +21,8 @@
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-
 }
-main{
+main {
   flex: 1;
 }
 
