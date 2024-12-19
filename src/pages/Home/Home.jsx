@@ -10,8 +10,6 @@ import "./Home.scss";
 const Home = () => {
   const { products, loading } = useInfoContext();
 
-  console.log(products);
-
   return (
     <main>
       {loading ? (

@@ -19,34 +19,10 @@ export const InfoProvider = ({ children }) => {
   useEffect(() => {
     const getProd = async () => {
       try {
-        // APIga so'rov yuborish
         setLoading(true);
         const response = await getReq("prod");
-        console.log(response);
-        
-        // const response = await axios.post(
-        //   "https://api.billz.uz/v1/",
-        //   {
-        //     jsonrpc: "2.0",
-        //     method: "products.get",
-        //     params: {
-        //       LastUpdatedDate: "2018-03-21T18:19:25Z",
-        //       WithProductPhotoOnly: 0,
-        //       IncludeEmptyStocks: 0,
-        //     },
-        //     id: "1",
-        //   },
-        //   {
-        //     headers: {
-        //       "Content-Type": "application/json",
-        //       Authorization: `Bearer ${token}`,
-        //     },
-        //   }
-        // );
-
-        setProducts(response.data.prod);
-
         console.log(response.data.prod);
+        setProducts(response.data.prod);
 
         // Ma'lumotlarni qaytarish
       } catch (error) {
