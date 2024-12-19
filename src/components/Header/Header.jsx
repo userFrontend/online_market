@@ -92,14 +92,14 @@ const Header = () => {
                           <span>{item.quantity}</span>
                           <button onClick={() => increment(item.ID)}>+</button>
                         </div>
-                        <button className='remove_btn' onClick={() => removeFromCart(item.id)}><MdClose/></button>
+                        <button className='remove_btn' onClick={() => removeFromCart(item.ID)}><MdClose/></button>
                       </div>
                     </div>
                  </div>
                ))}
               <div className="cart_footer">
                 <h3><span>ИТОГО:</span> ${totalPrice}</h3>
-                <Link to='/checkout'><button>ОФОРМИТЬ</button></Link>
+                <Link to='/checkout' onClick={showDrawer}><button>ОФОРМИТЬ</button></Link>
               </div>
              </div>
             )}

@@ -100,10 +100,6 @@
       transition: all linear 0.3s;
       background: none;
       line-height: 22px;
-      &:hover {
-        color: white;
-        background-color: #3a3a3a;
-      }
     }
     .add-btn {
       width: 100%;
@@ -116,6 +112,18 @@
     }
 
   }
+    @media (hover: hover){
+      button:hover{
+        color: white;
+        background-color: #3a3a3a;
+      }
+    }
+    @media (hover: none){
+      button:hover{
+        color: #3a3a3a;
+        background: transparent;
+      }
+    }
   &:hover {
     .prod-card__body {
       &__title {
