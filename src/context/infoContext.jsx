@@ -22,6 +22,8 @@ export const InfoProvider = ({ children }) => {
         // APIga so'rov yuborish
         setLoading(true);
         const response = await getReq("prod");
+        console.log(response);
+        
         // const response = await axios.post(
         //   "https://api.billz.uz/v1/",
         //   {
@@ -42,9 +44,9 @@ export const InfoProvider = ({ children }) => {
         //   }
         // );
 
-        setProducts(response.data.prod.slice(1400, 1500));
+        setProducts(response.data.prod);
 
-        console.log(response.data.prod.slice(1400, 1500));
+        console.log(response.data.prod);
 
         // Ma'lumotlarni qaytarish
       } catch (error) {
