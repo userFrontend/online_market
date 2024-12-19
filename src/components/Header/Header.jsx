@@ -37,9 +37,6 @@ const Header = () => {
                 </div>
                 <div className="logo_site">
                   <Icons.logo/>
-                  {/* <img src="/images/the.png" alt="logo" />
-                  <img src="/images/text.png" alt="logo" />
-                  <img src="/images/heart.png" alt="logo" /> */}
                 </div>
                 <ul className='header_list'>
                     <li>
