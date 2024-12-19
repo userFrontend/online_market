@@ -35,26 +35,29 @@ const Header = () => {
                 <div className="burger_menu">
                   <div className='burger_menu_item' onClick={toggleBurger}><FiMenu className='icon'/> Menu</div>
                 </div>
-                <div className="logo_site">
+                <Link to='/' className="logo_site">
                   <img src="/images/the.png" alt="logo" />
                   <img src="/images/text.png" alt="logo" />
                   <img src="/images/heart.png" alt="logo" />
-                </div>
+                </Link>
                 <ul className='header_list'>
                     <li>
-                        <NavLink to='/catalog'>SHOP ALL</NavLink>
+                        <NavLink to='/catalog'>Макияж</NavLink>
                     </li>
                     <li>
-                        <NavLink to='/bestsellers'>BESTSELLERS</NavLink>
+                        <NavLink to='/bestsellers'>Для лица</NavLink>
                     </li>
                     <li>
-                        <NavLink to='/colliction'>COLLICTION</NavLink>
+                        <NavLink to='/colliction'>Для тела</NavLink>
                     </li>
                     <li>
-                        <NavLink to='/about'>ABOUT AS</NavLink>
+                        <NavLink to='/colliction'>Для волос</NavLink>
                     </li>
                     <li>
-                        <NavLink to='/blog'>BLOG</NavLink>
+                        <NavLink to='/about'>Аксессуары</NavLink>
+                    </li>
+                    <li>
+                        <NavLink to='/blog'>Бренды</NavLink>
                     </li>
                 </ul>
                 <div className="options">

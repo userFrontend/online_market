@@ -1,47 +1,69 @@
-.form{
+.auth_modal {
     padding: 20px;
-    img{
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin: 30px auto;
-    }
-    form{
-        display: flex;
-        flex-direction: column;
-        gap: 20px;
-        align-items: center;
-        input{
-            width: 100%;
-            padding: 10px 15px;
-            outline: none;
-        }
-    }
-}
-.auth_footer{
-    padding: 0 20px;
-    .auth_btn{
-        width: 100%;
-        padding: 10px 15px;
+    max-width: 400px;
+    margin: 0 auto;
+  
+    .auth_tabs {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 20px;
+  
+      span {
         cursor: pointer;
-        border: none;
-        outline: none;
+        font-weight: bold;
+        padding-bottom: 5px;
+        border-bottom: 2px solid transparent;
+        &.active {
+          border-bottom: 2px solid black;
+        }
+      }
+    }
+  
+    .auth_form {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+  
+      input {
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: 14px;
+  
+        &:focus {
+          outline: none;
+          border-color: #000;
+        }
+      }
+  
+      .auth_error {
+        color: red;
+        font-size: 12px;
+        margin-top: -10px;
+      }
+  
+      .auth_btn {
+        padding: 10px;
         background-color: #F5A3B7;
         color: white;
-    }
-}
-.error {
-    color: red;
-    font-size: 12px;
-    margin-top: 5px;
-  }
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
   
-  .verify_btn {
-    margin-top: 10px;
-    background-color: #1890ff;
-    color: white;
-    border: none;
-    padding: 5px 10px;
-    cursor: pointer;
+        &:hover {
+          background-color: #333;
+        }
+      }
+  
+      label {
+        font-size: 12px;
+        display: flex;
+        align-items: center;
+  
+        input {
+          margin-right: 10px;
+        }
+      }
+    }
   }
   
