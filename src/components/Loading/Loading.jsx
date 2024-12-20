@@ -1,21 +1,13 @@
-import React, { useState } from "react";
-import "./Loading.scss";
+import { DotLottieReact } from '@lottiefiles/dotlottie-react';
 
-const Loader = () => {
+const Loading = () => {
   return (
-    <div className="loader">
-      <div className="loading">
-        <div className="logo"></div>
-        <div className="dots animate">
-          <div className="dot"></div>
-          <div className="dot"></div>
-          <div className="dot"></div>
-          <div className="dot"></div>
-          <div className="dot"></div>
-        </div>
-      </div>
-    </div>
+    <DotLottieReact
+      src="https://lottie.host/4a615408-2d5e-409a-b45b-a1958c4509ab/YVXhvykOxH.lottie"
+      loop
+      autoplay
+    />
   );
 };
 
-export default Loader;
+export default Loading
