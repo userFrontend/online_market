@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom'
 import { addReq } from '../../api/addRequest'
 
 const Orders = () => {
-  const {cartItems, removeFromCart, totalPrice, increment, decrement} = useInfoContext()
+  const {cartItems, removeFromCart, totalPrice, increment, decrement, setCartItems} = useInfoContext()
   const [shipping, setShipping] = useState('shipping')
   const [phoneNumber, setPhoneNumber] = useState('+998 (__) ___-__-__')
   const [sended, setSended] = useState(false)
@@ -22,8 +22,9 @@ const Orders = () => {
       data.append('totalPrice', totalPrice)
       data.append('id', orderId)
       const res = await addReq(data, 'prod')
-      console.log(res);
       setSended(true)
+      setCartItems([])
+      localStorage.removeItem('cart')
     } catch (error) {
       setSended(false)
       console.log(error);
@@ -31,7 +32,7 @@ const Orders = () => {
   }
   return (
     <div className="container">
-      {true ? <div className='sended'>
+      {sended ? <div className='sended'>
         <h2>Buyurtmangiz qabul qilindi</h2>
         <p>Buyurtma raqami: №{orderId}</p>
         <Link to='/'><button onClick={() => setSended(false)}>Главный</button></Link>
