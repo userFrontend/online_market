@@ -16,6 +16,7 @@ import Catalog from "./pages/Catalog/Catalog";
 import Blogs from "./pages/Blogs/Blogs";
 import OneBlog from "./pages/OneBlog/OneBlog";
 import Orders from "./pages/Orders/Orders";
+import Footer from "./components/Footer/Footer";
 
 function App() {
   const { userId } = useInfoContext();
@@ -30,10 +31,14 @@ function App() {
         <Route path="/blog" element={<Blogs />} />
         <Route path="/checkout" element={<Orders />} />
         <Route path="/blog/:blogId" element={<OneBlog />} />
-        <Route path="/profile" element={!userId ? <Navigate to="/" replace /> : <Profile />} />
-        <Route path="*" element={<Navigate to="/" replace />}/>
+        <Route
+          path="/profile"
+          element={!userId ? <Navigate to="/" replace /> : <Profile />}
+        />
+        <Route path="*" element={<Navigate to="/" replace />} />
         {/* <Route path="*" element={<Navigate to="/" replace /> : <OneProd /> } /> */}
       </Routes>
+      <Footer />
     </>
   );
 }

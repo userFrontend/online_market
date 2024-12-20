@@ -35,7 +35,7 @@ const Header = () => {
                   <div className='burger_menu_item' onClick={toggleBurger}><FiMenu className='icon'/> Menu</div>
                 </div>
                 <Link to={"/"} className="logo_site">
-                  <Icons.logo/>
+                  <Icons.logo key={"logo"}/>
                 </Link>
                 <ul className='header_list'>
                     <li>

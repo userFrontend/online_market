@@ -11,7 +11,8 @@ import { getPage } from "../../api/getRequeset";
 const Catalog = () => {
   const { products, loading, setLoading } = useInfoContext();
 
-  const [prod, setProd] = useState(products);
+  const [data, setData] = useState(products);
+  const [showMore, setShowMore] = useState(false);
 
   const queryParams = new URLSearchParams(window.location.search);
   const [page, setPage] = useState(parseInt(queryParams.get("page")) || 1);
@@ -23,7 +24,7 @@ const Catalog = () => {
         setLoading(true);
         const response = await getPage(`prod`, page);
         console.log(response.data);
-        setProd(response.data);
+        setData(response.data);
       } catch (error) {
         console.error("Error fetching products:", error.message || error);
       } finally {
@@ -32,7 +33,6 @@ const Catalog = () => {
     };
     getResProd();
   }, [page]);
-  
 
   const toggleAccordion = (e) => {
     e.preventDefault();
@@ -243,11 +243,29 @@ const Catalog = () => {
                 </div>
                 <div className="catalog__container__mside__down">
                   <div className="catalog__container__mside__down__wrapper">
-                    {prod?.prod?.map((el) => (
-                      <ProdCard key={el.ID} data={el} />
-                    ))}
+                    {showMore
+                      ? data?.prod?.map((el) => (
+                          <ProdCard key={el.ID} data={el} />
+                        ))
+                      : data?.prod
+                          ?.slice(-24)
+                          .map((el) => <ProdCard key={el.ID} data={el} />)}
                   </div>
-                  <Pagination totalItems={prod?.total} changePage={setPage} />
+                  <button
+                    className="show-more"
+                    onClick={() => setShowMore(!showMore)}
+                  >
+                    {showMore ? (
+                      <>
+                        Show Less <Icons.arrowUp/>
+                      </>
+                    ) : (
+                      <>
+                        Show More <Icons.arrowDown/>
+                      </>
+                    )}
+                  </button>
+                  <Pagination totalItems={data?.total} changePage={setPage} />
                 </div>
               </div>
             </div>
