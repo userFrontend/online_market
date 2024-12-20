@@ -35,7 +35,7 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route
           path="/profile"
-          element={!userId ? <Navigate to="/" replace /> : <Profile />}
+          element={<Profile />}
         />
         <Route path="*" element={<Navigate to="/" replace />} />
         {/* <Route path="*" element={<Navigate to="/" replace /> : <OneProd /> } /> */}

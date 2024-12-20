@@ -1,45 +1,26 @@
-import React from 'react'
-import './Profile.scss'
-import { useInfoContext } from '../../context/infoContext'
+import React from "react";
+import "./Profile.scss";
+import { useInfoContext } from "../../context/infoContext";
 
 const Profile = () => {
-    const {currentUser} = useInfoContext()
   return (
     <div className="container">
-        <div className='user_profile'>
-            <h3>Hisob bo'limi</h3>
-            <div className="profile_pic">
-                <img src={currentUser?.profilePicture || './images/uz.jpg'} alt="" />
-                <label htmlFor="profile_pic">
-                    <input id='profile_pic' type="file" name='profilePicture'/>
-                </label>
-            </div>
-            <form action="">
-                <label htmlFor="">
-                    <input defaultValue={currentUser?.firstname} type="text" />
-                </label>
-                <label htmlFor="">
-                    <input defaultValue={currentUser?.lastname} type="text" />
-                </label>
-                <label htmlFor="">
-                    <input defaultValue={currentUser?.email} type="email" />
-                </label>
-                <label htmlFor="">
-                    <input type="text" />
-                </label>
-                <label htmlFor="">
-                    <input type="date" />
-                </label>
-                <label htmlFor="">
-                    <input type="text" />
-                </label>
-                <label htmlFor="">
-                    <input type="text" />
-                </label>
-            </form>
+      <div className="profile">
+        <div className="left_page">
+          <h3>Аккаунт</h3>
         </div>
+        <form className="right_page">
+          <h3>Контактная информация</h3>
+          <input type="email" />
+          <h3>Адрес доставки</h3>
+          <div className="name">
+            <input type="text" placeholder="First Name" />
+            <input type="text" placeholder="Last Name" />
+          </div>
+          <button className="set-card__info__buttons">Сохранить</button>
+        </form>
+      </div>
     </div>
-  )
-}
-
-export default Profile
+  );
+};
+export default Profile;
