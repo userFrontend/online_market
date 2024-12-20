@@ -34,9 +34,9 @@ const Header = () => {
                 <div className="burger_menu">
                   <div className='burger_menu_item' onClick={toggleBurger}><FiMenu className='icon'/> Menu</div>
                 </div>
-                <div className="logo_site">
-                  <Icons.logo/>
-                </div>
+                <Link to={"/"} className="logo_site">
+                  <Icons.logo key={"logo"}/>
+                </Link>
                 <ul className='header_list'>
                     <li>
                         <NavLink to='/catalog'>Макияж</NavLink>

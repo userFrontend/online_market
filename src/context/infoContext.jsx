@@ -21,7 +21,6 @@ export const InfoProvider = ({ children }) => {
       try {
         setLoading(true);
         const response = await getReq(`prod`);
-        // console.log(response.data);
         setProducts(response.data.prod);
       } catch (error) {
         console.error("Error fetching products:", error.message || error);
@@ -31,11 +30,6 @@ export const InfoProvider = ({ children }) => {
     };
     getProd();
   }, []);
-  // const handlePageChange = (page) => {
-  //   setCurrentPage(page);
-  //   fetchData(page);
-  //   window.history.pushState(null, '', `?page=${page}`);
-  // };
 
   // Savatchani localStorage ga saqlash
   useEffect(() => {

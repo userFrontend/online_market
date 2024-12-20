@@ -62,7 +62,7 @@ const Home = () => {
                 <li className="shares__container__wrapper__item">
                   <div className="shares__container__wrapper__item__curtain">
                     <button>
-                      See In <Icons.instagram />
+                      See In <Icons.instagramOutline />
                     </button>
                     <button>Buy Now</button>
                   </div>
@@ -70,7 +70,7 @@ const Home = () => {
                 <li className="shares__container__wrapper__item">
                   <div className="shares__container__wrapper__item__curtain">
                     <button>
-                      See In <Icons.instagram />
+                      See In <Icons.instagramOutline />
                     </button>
                     <button>Buy Now</button>
                   </div>
@@ -78,7 +78,7 @@ const Home = () => {
                 <li className="shares__container__wrapper__item">
                   <div className="shares__container__wrapper__item__curtain">
                     <button>
-                      See In <Icons.instagram />
+                      See In <Icons.instagramOutline />
                     </button>
                     <button>Buy Now</button>
                   </div>
@@ -86,7 +86,7 @@ const Home = () => {
                 <li className="shares__container__wrapper__item">
                   <div className="shares__container__wrapper__item__curtain">
                     <button>
-                      See In <Icons.instagram />
+                      See In <Icons.instagramOutline />
                     </button>
                     <button>Buy Now</button>
                   </div>
@@ -94,7 +94,7 @@ const Home = () => {
                 <li className="shares__container__wrapper__item">
                   <div className="shares__container__wrapper__item__curtain">
                     <button>
-                      See In <Icons.instagram />
+                      See In <Icons.instagramOutline />
                     </button>
                     <button>Buy Now</button>
                   </div>
@@ -102,7 +102,7 @@ const Home = () => {
                 <li className="shares__container__wrapper__item">
                   <div className="shares__container__wrapper__item__curtain">
                     <button>
-                      See In <Icons.instagram />
+                      See In <Icons.instagramOutline />
                     </button>
                     <button>Buy Now</button>
                   </div>
@@ -110,7 +110,7 @@ const Home = () => {
                 <li className="shares__container__wrapper__item">
                   <div className="shares__container__wrapper__item__curtain">
                     <button>
-                      See In <Icons.instagram />
+                      See In <Icons.instagramOutline />
                     </button>
                     <button>Buy Now</button>
                   </div>
@@ -118,7 +118,7 @@ const Home = () => {
                 <li className="shares__container__wrapper__item">
                   <div className="shares__container__wrapper__item__curtain">
                     <button>
-                      See In <Icons.instagram />
+                      See In <Icons.instagramOutline />
                     </button>
                     <button>Buy Now</button>
                   </div>
@@ -126,7 +126,7 @@ const Home = () => {
                 <li className="shares__container__wrapper__item">
                   <div className="shares__container__wrapper__item__curtain">
                     <button>
-                      See In <Icons.instagram />
+                      See In <Icons.instagramOutline />
                     </button>
                     <button>Buy Now</button>
                   </div>
