@@ -70,7 +70,7 @@ const Footer = () => {
               Privacy Policy
             </Link>
             <Link target="_blank" to={"/"}>
-              terms and conditions{" "}
+              Terms and Conditions
             </Link>
           </p>
         </div>
