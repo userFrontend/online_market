@@ -5,14 +5,31 @@ import { useInfoContext } from '../../context/infoContext'
 import { MdClose } from 'react-icons/md'
 import { Breadcrumb } from 'antd'
 import { Link } from 'react-router-dom'
+import { addReq } from '../../api/addRequest'
 
 const Orders = () => {
-const {cartItems, removeFromCart, totalPrice, increment, decrement} = useInfoContext()
+  const {cartItems, removeFromCart, totalPrice, increment, decrement} = useInfoContext()
+  const [shipping, setShipping] = useState('shipping')
   const [phoneNumber, setPhoneNumber] = useState('+998 (__) ___-__-__')
+
+  const handleAdd = async (e) => {
+    e.preventDefault()
+    try {
+      const data = new FormData(e.target)
+      data.append('products', cartItems)
+      data.append('totalPrice', totalPrice)
+      const res = await addReq(data, 'prod')
+      console.log(res);
+      
+    } catch (error) {
+      console.log(error);
+      
+    }
+  }
   return (
     <div className="container">
       <div className='orders'>
-        <form className="left_page">
+        <form onSubmit={handleAdd} className="left_page">
           <Breadcrumb
             items={[
               {
@@ -26,21 +43,20 @@ const {cartItems, removeFromCart, totalPrice, increment, decrement} = useInfoCon
           <h3>Контактная информация</h3>
           <input type="text" />
           <div className="method_pay">
-            <label htmlFor="">
-              <input type="radio" />
+            <label htmlFor="metShip">
+              <input type="radio" id='metShip' checked={shipping === 'shipping'} onChange={() => setShipping('shipping')}/>
               доставка
             </label>
-            <label htmlFor="">
-              <input type="radio" />
+            <label htmlFor="metPic">
+              <input type="radio" id='metPic' checked={shipping === 'pickup'} onChange={() => setShipping('pickup')}/>
               подобрать
             </label>
           </div>
             <h3>Адрес доставки</h3>
-            <input type="text" placeholder='First Name'/>
-            <input type="text" placeholder='Last Name'/>
-            <input type="text" placeholder='Country'/>
-            <input type="text" placeholder='City'/>
-            <input type="text" placeholder='Post code'/>
+            <input type="text" name='fullname' placeholder='Имя / Фамилия' required/>
+            <input type="text" name='country' placeholder='Country' required/>
+            <input type="text" name='city' placeholder='City' required/>
+            <input type="text" name='address' placeholder='Post code' required/>
             <PhoneInput phone={phoneNumber} setPhone={setPhoneNumber}/>
             <button>Заказать</button>
         </form>

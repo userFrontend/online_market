@@ -116,7 +116,7 @@ const Header = () => {
             <li>
                 <Collapse className='collapse_menu' accordion ghost expandIconPosition='end' items={[{
                     key: '1',
-                    label: 'SHOP ALL',
+                    label: 'МАКИЯЖ',
                     children: <div>
                     <Collapse className='collapse_menu_item' accordion ghost expandIconPosition='end' items={[
                       {
@@ -189,15 +189,15 @@ const Header = () => {
                   }]} />
             </li>
             <li>
-                <Link to='/bestsellers'>BESTSELLERS</Link>
+                <Link to='/bestsellers'>ДЛЯ ЛИЦА</Link>
             </li>
             <li>
-                <Link to='/colliction'>COLLICTION</Link>
+                <Link to='/colliction'>ДЛЯ ТЕЛА</Link>
             </li>
             <li>
                 <Collapse className='collapse_menu' accordion ghost expandIconPosition='end' items={[{
                     key: '1',
-                    label: 'ABOUT US',
+                    label: 'ДЛЯ ВОЛОС',
                     children: <div>
                     <Collapse className='collapse_menu_item' accordion ghost expandIconPosition='end' items={[
                       {
@@ -270,7 +270,10 @@ const Header = () => {
                   }]} />
             </li>
             <li>
-                <Link to='/blog'>BLOG</Link>
+                <Link to='/blog'>АКСЕССУАРЫ</Link>
+            </li>
+            <li>
+                <Link to='/blog'>БРЕНДЫ</Link>
             </li>
           </ul>
         </Drawer>

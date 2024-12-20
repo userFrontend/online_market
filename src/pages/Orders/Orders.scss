@@ -1,6 +1,7 @@
 .orders{
+    width: 100%;
     display: flex;
-    justify-content: center;
+    // justify-content: center;
     gap: 30px;
     padding: 30px 0;
     .left_page, .right_page{
@@ -9,10 +10,10 @@
         gap: 20px;
         background-color: white;
         padding: 30px;
+        width: 100%;
     }
     
     .left_page{
-        width: 800px;
         input{
             border: 1px solid #DFE1E3;
             outline: none;
@@ -21,10 +22,34 @@
                 color: gray;
             }
         }
+        button{
+            padding: 10px 20px;
+            font-size: 18px;
+            background-color: #F8E5E7;
+            border: none;
+            transition: all ease 2s;
+            &:checked{
+                box-shadow: inset 0px 0px 2px gray;
+
+            }
+        }
     }
 
     .right_page{
-        // width: 1;
+        
+    }
+
+    .method_pay{
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        label{
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            accent-color: black;
+        }
     }
 
     .cart_box{
@@ -103,6 +128,18 @@
                 font-weight: bold;
                 background-color: #F8E5E7;
             }
+        }
+    }
+}
+@media (max-width: 1158px){
+    .orders{
+        flex-direction: column-reverse;
+        align-items: center !important;
+        .left_page{
+            width: 100%;
+        }
+        .right_page{
+            width: 100%;
         }
     }
 }
