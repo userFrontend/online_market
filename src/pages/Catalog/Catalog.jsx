@@ -13,9 +13,14 @@ const Catalog = () => {
 
   const [data, setData] = useState(products);
   const [showMore, setShowMore] = useState(false);
+  const [screenWidth, setScreenWidth] = useState(window?.screen.width);
 
   const queryParams = new URLSearchParams(window.location.search);
   const [page, setPage] = useState(parseInt(queryParams.get("page")) || 1);
+
+  window?.addEventListener("resize", () => {
+    setScreenWidth(window?.screen.width);
+  });
 
   console.log(page);
   useEffect(() => {
@@ -36,14 +41,37 @@ const Catalog = () => {
 
   const toggleAccordion = (e) => {
     e.preventDefault();
-    e.target.children[0].classList.toggle("open");
+    console.log(e.currentTarget.parentElement.classList.contains("links"));
+
+    e.target.children[0]?.classList.toggle("open");
+    let linkParent = e.currentTarget.parentElement;
     let accardion = e.currentTarget.nextElementSibling;
-    if (accardion.style.maxHeight) {
-      accardion.style.maxHeight = null;
-      accardion.style.padding = "0";
-    } else {
-      accardion.style.padding = "10px 0";
-      accardion.style.maxHeight = accardion.scrollHeight + "px";
+    let accardionParent = e.currentTarget.parentElement;
+
+    if (linkParent.classList.contains("links")) {
+      if (linkParent.style.maxHeight) {
+        linkParent.style.maxHeight = null;
+      } else {
+        linkParent.style.maxHeight = linkParent.scrollHeight + "px";
+      }
+    }
+
+    if (accardion.style.maxHeight && !linkParent.classList.contains("links")) {
+      if (e.target.classList.contains("filter-title")) {
+        accardion.style.maxHeight = null;
+      } else {
+        accardionParent.style.maxHeight = accardionParent.scrollHeight + "px";
+        accardion.style.maxHeight = null;
+        accardion.style.padding = "0 0 0 0px";
+      }
+    } else if (!linkParent.classList.contains("links")) {
+      if (e.target.classList.contains("filter-title")) {
+        accardion.style.maxHeight = accardion.scrollHeight + "px";
+      } else {
+        accardionParent.style.maxHeight = "max-content";
+        accardion.style.padding = "10px 0 10px 0px";
+        accardion.style.maxHeight = accardion.scrollHeight + "px";
+      }
     }
   };
   return (
@@ -56,19 +84,43 @@ const Catalog = () => {
             <div className="container catalog__container">
               <div className="catalog__container__aside">
                 <ul className="links">
-                  <li>Double-Cleanse</li>
+                  {screenWidth < 940 ? (
+                    <li className="linkB" onClick={(e) => toggleAccordion(e)}>
+                      Double-Cleanse
+                      <Icons.accordionIcon className="button__icon" />
+                    </li>
+                  ) : (
+                    <li className="linkB">Double-Cleanse</li>
+                  )}
                   <li>Cleansing Balms</li>
                   <li>Oil Cleansers</li>
                   <li>Water Cleansers</li>
                 </ul>
                 <ul className="links">
-                  <li>Double-Cleanse</li>
+                  {screenWidth < 940 ? (
+                    <li className="linkB" onClick={(e) => toggleAccordion(e)}>
+                      Double-Cleanse{" "}
+                      <Icons.accordionIcon className="button__icon" />
+                    </li>
+                  ) : (
+                    <li className="linkB">Double-Cleanse</li>
+                  )}
                   <li>Cleansing Balms</li>
                   <li>Oil Cleansers</li>
                   <li>Water Cleansers</li>
                 </ul>
+                {screenWidth < 940 ? (
+                  <button
+                    className="filter-title"
+                    onClick={(e) => toggleAccordion(e)}
+                  >
+                    Filters <Icons.accordionIcon className="button__icon" />
+                  </button>
+                ) : (
+                  <button className="filter-title">Filters</button>
+                )}
+
                 <form className="filter">
-                  <h2>Filters</h2>
                   <button type="button" onClick={(e) => toggleAccordion(e)}>
                     Product Type
                     <Icons.accordionIcon className="button__icon" />
@@ -257,11 +309,11 @@ const Catalog = () => {
                   >
                     {showMore ? (
                       <>
-                        Show Less <Icons.arrowUp/>
+                        Show Less <Icons.arrowUp />
                       </>
                     ) : (
                       <>
-                        Show More <Icons.arrowDown/>
+                        Show More <Icons.arrowDown />
                       </>
                     )}
                   </button>
