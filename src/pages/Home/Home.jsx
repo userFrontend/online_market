@@ -25,8 +25,8 @@ const Home = () => {
           </section>
           <section className="swipers">
             <div className="container swipers__container">
-              <CustomSwiper data={products.slice(-14)} text="new arrivals" />
-              <CustomSwiper data={products.slice(-14)} text="best sellers" />
+              <CustomSwiper data={products?.slice(-14)} text="new arrivals" />
+              <CustomSwiper data={products?.slice(-14)} text="best sellers" />
             </div>
           </section>
           <section className="sets">

@@ -120,6 +120,9 @@ const Prod = ({
           <button onClick={onAddToBag}>Add To Bag</button>
         </div>
       </div>
+      <div>
+            <h2>Dewy Glow Jelly Creammm</h2>
+      </div>
     </div>
   );
 };
