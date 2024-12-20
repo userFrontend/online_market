@@ -131,6 +131,17 @@
         }
     }
 }
+.sended{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    height: 500px;
+    button{
+        padding: 10px 20px;
+    }
+}
 @media (max-width: 1158px){
     .orders{
         flex-direction: column-reverse;

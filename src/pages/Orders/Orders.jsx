@@ -11,6 +11,8 @@ const Orders = () => {
   const {cartItems, removeFromCart, totalPrice, increment, decrement} = useInfoContext()
   const [shipping, setShipping] = useState('shipping')
   const [phoneNumber, setPhoneNumber] = useState('+998 (__) ___-__-__')
+  const [sended, setSended] = useState(false)
+  const orderId = Math.floor(100000 + Math.random() * 900000);
 
   const handleAdd = async (e) => {
     e.preventDefault()
@@ -18,17 +20,22 @@ const Orders = () => {
       const data = new FormData(e.target)
       data.append('products', cartItems)
       data.append('totalPrice', totalPrice)
+      data.append('id', orderId)
       const res = await addReq(data, 'prod')
       console.log(res);
-      
+      setSended(true)
     } catch (error) {
+      setSended(false)
       console.log(error);
-      
     }
   }
   return (
     <div className="container">
-      <div className='orders'>
+      {true ? <div className='sended'>
+        <h2>Buyurtmangiz qabul qilindi</h2>
+        <p>Buyurtma raqami: №{orderId}</p>
+        <Link to='/'><button onClick={() => setSended(false)}>Главный</button></Link>
+      </div> : <div className='orders'>
         <form onSubmit={handleAdd} className="left_page">
           <Breadcrumb
             items={[
@@ -94,7 +101,7 @@ const Orders = () => {
             </div>
           </div>
         </div>
-      </div>
+      </div>}
     </div>
   );
 };
