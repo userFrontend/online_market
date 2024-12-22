@@ -76,10 +76,13 @@ const Header = () => {
           <div className="cart">
             {cartItems?.length === 0 ? (
               <div className="no_cart">
-                No Cart
+                <img src="/images/17.jpg" alt="cart" />
+                <h3>Вы еще не выбрали товар</h3>
+                <Link onClick={showDrawer} className='link_cart' to='/'>Выбор продукта</Link>
               </div>
             ) : (
-              <div className='cart_box'>
+              <div className="cart_box">
+                <div className='cart_items'>
                 {cartItems.map((item, i) => (
                    <div key={i} className="cart_item">
                     <img src="/images/img.png" alt="cart_img" />
@@ -97,11 +100,12 @@ const Header = () => {
                     </div>
                  </div>
                ))}
+             </div>
               <div className="cart_footer">
                 <h3><span>ИТОГО:</span> ${totalPrice}</h3>
                 <Link to='/checkout' onClick={showDrawer}><button>ОФОРМИТЬ</button></Link>
               </div>
-             </div>
+              </div>
             )}
           </div>
         </Drawer>

@@ -70,4 +70,23 @@
   cursor: pointer;
   width: 100%;
 }
+.auth_bottom{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 10px 0;
+}
+.google_btn{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 5px;
+  width: 100%;
+  .icon{
+    font-size: 22px;
+  }
+}
   

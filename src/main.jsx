@@ -5,6 +5,7 @@ import { BrowserRouter } from 'react-router-dom'
 import { ToastContainer } from 'react-toastify'
 import { GoogleOAuthProvider } from '@react-oauth/google'
 const client_id = import.meta.env.VITE_GOOGLE_CLIENT;
+
 createRoot(document.getElementById('root')).render(
   <>
     <BrowserRouter basename='/'>

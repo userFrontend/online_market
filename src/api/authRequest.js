@@ -12,4 +12,4 @@ export const signUp = (formData) => API.post(`/api/auth/signup`, formData, {head
 
 export const login = (formData) => API.post(`/api/auth/login`, formData, {headers: {verificationtoken: "ulamYPMnafsAsJJXdSfqjZhasg23faSICreybtXN"}})
 
-export const googleAuth = (formData) => API.post(`/api/auth/googleAuth`, formData, {headers: {verificationtoken: "ulamYPMnafsAsJJXdSfqjZhasg23faSICreybtXN"}})
+export const withGoogle = (formData) => API.post(`/api/auth/googleAuth`, formData, {headers: {verificationtoken: "ulamYPMnafsAsJJXdSfqjZhasg23faSICreybtXN"}})

@@ -20,11 +20,11 @@ import About from "./pages/About/About";
 import "./App.css";
 
 function App() {
-  const { userId, cartItems } = useInfoContext();
+  const { userId, loading } = useInfoContext();
 
   return (
     <>
-      <Header />
+      {!loading && <Header />}
       <Routes>
         <Route index path="/" element={<Home />} />
         <Route path="/catalog" element={<Catalog />} />
@@ -40,7 +40,7 @@ function App() {
         <Route path="*" element={<Navigate to="/" replace />} />
         {/* <Route path="*" element={<Navigate to="/" replace /> : <OneProd /> } /> */}
       </Routes>
-      <Footer />
+      {!loading && <Footer />}
     </>
   );
 }

@@ -77,7 +77,6 @@ export const InfoProvider = ({ children }) => {
     const getUser = async () => {
       try {
         const { data } = await getOneReq(userId, "user");
-        console.log(data.user);
         setCurrentUser(data.user);
       } catch (error) {
         console.log(error);

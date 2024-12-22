@@ -2,8 +2,13 @@ import { useState } from 'react';
 import { Modal } from 'antd';
 import { FaRegUser } from 'react-icons/fa';
 import './Auth.scss';
+import GoogleAuth from './GoogleAuth';
+import { Icons } from '../../utils/icons';
+import { Link } from 'react-router-dom';
+import { useInfoContext } from '../../context/infoContext';
 
 const AuthModal = () => {
+  const {userId} = useInfoContext()
   const [open, setOpen] = useState(false);
   const [isRegister, setIsRegister] = useState(false);
   const [emailOrPhone, setEmailOrPhone] = useState('');
@@ -58,9 +63,9 @@ const AuthModal = () => {
 
   return (
     <>
-      <div className="option_items" onClick={showModal}>
+      <Link to={userId ? '/profile' : ''} className="option_items" onClick={!userId && showModal}>
         <FaRegUser className="icon" /> АККАУНТ
-      </div>
+      </Link>
       <Modal
         centered
         footer={null}
@@ -121,6 +126,14 @@ const AuthModal = () => {
               {isRegister ? 'Зарегистрироваться' : 'Вход'}
             </button>
           </form>
+          <div className="google">
+            <div className="auth_bottom">
+              <Icons.roseLeft/>
+              <span>ИЛИ</span>
+              <Icons.roseRight/>
+            </div>
+            <GoogleAuth/>
+          </div>
         </div>
       </Modal>
     </>
