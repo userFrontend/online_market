@@ -11,11 +11,8 @@ import { MdClose } from 'react-icons/md'
 import { Icons } from '../../utils/icons'
 
 const Header = () => {
-    const { cartItems, removeFromCart, totalPrice, increment, decrement, userId, exit} = useInfoContext()
-    const [openlang, setOpenlang] = useState(false);
+    const { cartItems, removeFromCart, totalPrice, increment, decrement, setModalOpen, userId, exit} = useInfoContext()
     const [showBurger, setShowBurger] = useState(false);
-    const [showMenu, setShowMenu] = useState(false);
-    const [auth, setAuth] = useState(false);
     const [open, setOpen] = useState(false);
     const showDrawer = () => setOpen(!open);
     const toggleBurger = () => setShowBurger(!showBurger)
@@ -103,7 +100,7 @@ const Header = () => {
              </div>
               <div className="cart_footer">
                 <h3><span>ИТОГО:</span> ${totalPrice}</h3>
-                <Link to='/checkout' onClick={showDrawer}><button>ОФОРМИТЬ</button></Link>
+                <Link to={userId && '/checkout'} onClick={() => {!userId ? setModalOpen(true) : showDrawer()}}><button>ОФОРМИТЬ</button></Link>
               </div>
               </div>
             )}

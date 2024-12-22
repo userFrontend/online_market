@@ -15,6 +15,7 @@ export const InfoProvider = ({ children }) => {
   const initialCart = JSON.parse(localStorage.getItem("cart")) || [];
   const [cartItems, setCartItems] = useState(initialCart);
   const [products, setProducts] = useState([]);
+  const [modalOpen, setModalOpen] = useState(false);
 
   useEffect(() => {
     const getProd = async () => {
@@ -111,7 +112,7 @@ export const InfoProvider = ({ children }) => {
     decrement,
     products,
     loading,
-    setLoading,
+    setLoading, modalOpen, setModalOpen
   };
 
   return <InfoContext.Provider value={value}>{children}</InfoContext.Provider>;

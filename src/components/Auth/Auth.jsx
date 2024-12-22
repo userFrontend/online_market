@@ -8,8 +8,7 @@ import { Link } from 'react-router-dom';
 import { useInfoContext } from '../../context/infoContext';
 
 const AuthModal = () => {
-  const {userId} = useInfoContext()
-  const [open, setOpen] = useState(false);
+  const {userId, modalOpen, setModalOpen} = useInfoContext()
   const [isRegister, setIsRegister] = useState(false);
   const [emailOrPhone, setEmailOrPhone] = useState('');
   const [isPhone, setIsPhone] = useState(false);
@@ -19,7 +18,7 @@ const AuthModal = () => {
   const [error, setError] = useState('');
 
   const showModal = () => {
-    setOpen(!open);
+    setModalOpen(!modalOpen);
     setIsRegister(false);
     setEmailOrPhone('');
     setIsPhone(false);
@@ -69,7 +68,7 @@ const AuthModal = () => {
       <Modal
         centered
         footer={null}
-        open={open}
+        open={modalOpen}
         onCancel={showModal}
       >
         <div className="auth_modal">

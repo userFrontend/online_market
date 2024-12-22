@@ -2,50 +2,66 @@ import { useGoogleLogin } from '@react-oauth/google';
 import { useEffect, useState } from 'react';
 import { addReq } from '../../api/addRequest';
 import { FcGoogle } from 'react-icons/fc';
+import { useInfoContext } from '../../context/infoContext';
+
 const GoogleAuth = () => {
-    const [userData, setUserData] = useState(null)
+    const { setModalOpen } = useInfoContext();
+    const [userData, setUserData] = useState(null);
+
     const login = useGoogleLogin({
         onSuccess: async (tokenResponse) => {
             try {
                 const res = await fetch('https://www.googleapis.com/oauth2/v3/userinfo', {
                     headers: {
-                        Authorization: `Bearer ${tokenResponse.access_token}`,
+                        Authorization: `Bearer ${tokenResponse.access_token}`, // To'g'ri token uzatildi
                     },
                 });
+
+                if (!res.ok) {
+                    throw new Error('Failed to fetch user info from Google API');
+                }
+
                 const profile = await res.json();
-                console.log(profile);
-                setUserData(profile)
+                setUserData(profile);
             } catch (error) {
-                console.error('API Error:', error);
+                console.error('API Error:', error.message || error);
             }
         },
         onError: (error) => console.error('Login Error:', error),
         scope: 'https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile',
     });
 
-    useEffect(()=>{
-        const sign = async() => {
+    useEffect(() => {
+        const signIn = async () => {
             try {
+                if (!userData) return;
+
                 const data = {
                     fullname: `${userData.given_name} ${userData.family_name}`,
                     email: userData.email,
                 };
-                const respond = await addReq(data, 'auth/googleAuth');
 
-                localStorage.setItem('user_id', respond.data.user._id);
-                localStorage.setItem('verification_tokenauthuser', respond.data.token);
-                window.location.replace('/');
+                const response = await addReq(data, 'auth/googleAuth');
+
+                // Ma'lumotlarni localStorage ga saqlash
+                localStorage.setItem('user_id', response.data.user._id);
+                localStorage.setItem('verification_tokenauthuser', response.data.token);
+
+                // Modalni yopish
+                setModalOpen(false);
             } catch (error) {
-                console.log(error);
-                
+                console.error('Authentication Error:', error.message || error);
             }
-        }
-        if(userData){
-            sign()
-        }
-    },[userData])
+        };
 
-    return <button className='google_btn' onClick={() => login()}><FcGoogle className='icon'/> Войти через Google</button>;
+        signIn();
+    }, [userData, setModalOpen]);
+
+    return (
+        <button className="google_btn" onClick={login}>
+            <FcGoogle className="icon" /> Войти через Google
+        </button>
+    );
 };
 
 export default GoogleAuth;
