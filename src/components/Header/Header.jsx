@@ -60,7 +60,7 @@ const Header = () => {
                 <div className="options">
                   <div className='option_items'><LuSearch className='icon'/> ПОИСК</div>
                   <AuthModal/>
-                  <div className='option_items' onClick={showDrawer}><SlHandbag className='icon'/> КОРЗИНА </div>
+                  <div className='option_items cart_link' onClick={showDrawer}><SlHandbag className='icon'/> <span>{cartItems.length}</span> КОРЗИНА </div>
                 </div>
                 <div className='media_item' onClick={showDrawer}><SlHandbag className='icon'/>КОРЗИНА </div>
             </nav>

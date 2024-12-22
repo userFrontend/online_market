@@ -18,30 +18,13 @@ import Orders from "./pages/Orders/Orders";
 import Footer from "./components/Footer/Footer";
 import About from "./pages/About/About";
 import "./App.css";
+import Loading from "./components/Loading/Loading";
 
 function App() {
   const { userId, loading } = useInfoContext();
 
   return (
-    <>
-      {!loading && <Header />}
-      <Routes>
-        <Route index path="/" element={<Home />} />
-        <Route path="/catalog" element={<Catalog />} />
-        <Route path="/prod/:prodId" element={<OneProd />} />
-        <Route path="/blog" element={<Blogs />} />
-        <Route path="/checkout" element={<Orders />} />
-        <Route path="/blog/:blogId" element={<OneBlog />} />
-        <Route path="/about" element={<About />} />
-        <Route
-          path="/profile"
-          element={<Profile />}
-        />
-        <Route path="*" element={<Navigate to="/" replace />} />
-        {/* <Route path="*" element={<Navigate to="/" replace /> : <OneProd /> } /> */}
-      </Routes>
-      {!loading && <Footer />}
-    </>
+    <Loading/>
   );
 }
 

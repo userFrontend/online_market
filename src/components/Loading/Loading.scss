@@ -1,46 +1,49 @@
-
-:root {
-	--index: calc(1vw + 1vh);
-	--transition: 1.25s cubic-bezier(.2, .6, 0, 1);
-}
-.main-wrapper {
-	height: 100vh;
+.loader-container {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    background: linear-gradient(to bottom, #ffe6e6, #fff8e1);
     overflow: hidden;
-	display: flex;
-	gap: var(--index);
-    background-color: black;
-    user-select: none;
-}
-.slider {
-	transform: rotate(12.5deg);
-	overflow: visible;
-    height: 100vh !important;
-}
-.slider:nth-child(odd) {
-	transform: rotate(192.5deg);
-}
-.slider .slider__wrapper {
-	transition: var(--transition)!important;
-	will-change: transform;
-}
-.slider__item {
-	width: 25vw;
-	margin-bottom: calc(var(--index) * 2.6);
-	cursor: pointer;
-	transition: transform var(--transition);
-	will-change: transform;
-	box-shadow: rgb(0 0 0 / .15) 0 0 30px 10px;
-}
-.slider__item:hover {
-	transform: scale(1.04);
-}
-.slider__img {
-	width: 100%;
-	height: 100%;
-	background-size: cover;
-	border-radius: 8px;
-    background: linear-gradient(pink, red, yellow, );
-}
-.slider:nth-child(odd) .slider__img {
-	transform: rotate(-180deg);
-}
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .loader-text {
+    position: absolute;
+    font-size: 3rem;
+    font-weight: bold;
+    color: #ff6f61;
+    z-index: 10;
+    text-transform: uppercase;
+  }
+  
+  .loader-bubbles {
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
+  
+  .bubble {
+    position: absolute;
+    bottom: -50px;
+    left: calc(var(--random-position) * 100%);
+    width: calc(var(--random-size) * 40px + 10px);
+    height: calc(var(--random-size) * 40px + 10px);
+    background: radial-gradient(circle, #ff6f61, #ffca85);
+    border-radius: 50%;
+    animation: rise calc(var(--random-speed) * 3s + 2s) ease-in infinite;
+    animation-delay: calc(var(--random-delay) * 2s);
+  }
+  
+  @keyframes rise {
+    0% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(-110vh);
+      opacity: 0;
+    }
+  }
+  

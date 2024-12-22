@@ -65,6 +65,22 @@ header{
         text-decoration: underline;
     }
 }
+.cart_link{
+    position: relative;
+    span{
+        position: absolute;
+        right: -2px;
+        top: -5px;
+        background-color: red;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+    }
+}
 .cart_box{
     display: flex;
     flex-direction: column;
