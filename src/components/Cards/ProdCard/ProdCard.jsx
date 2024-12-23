@@ -30,7 +30,7 @@ const ProdCard = ({ data }) => {
             ""
           )}
         </ul>
-        <img src="images/img.png" alt="img" />
+        <img src={currentProd.url ? currentProd.url : "images/img.png"} alt="img" />
         <Icons.likeDefault />
       </div>
 
