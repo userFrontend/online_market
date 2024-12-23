@@ -59,7 +59,7 @@ const Header = () => {
                   <AuthModal/>
                   <div className='option_items cart_link' onClick={showDrawer}><SlHandbag className='icon'/> <span>{cartItems.length}</span> КОРЗИНА </div>
                 </div>
-                <div className='media_item' onClick={showDrawer}><SlHandbag className='icon'/>КОРЗИНА </div>
+                <div className='media_item cart_link' onClick={showDrawer}><SlHandbag className='icon'/> <span>{cartItems.length}</span> КОРЗИНА </div>
             </nav>
         </div>
         <Drawer className='menu_box' title={false} closeIcon={false} onClose={showDrawer} open={open}>
