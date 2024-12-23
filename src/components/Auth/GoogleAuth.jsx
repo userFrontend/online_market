@@ -5,7 +5,7 @@ import { FcGoogle } from 'react-icons/fc';
 import { useInfoContext } from '../../context/infoContext';
 
 const GoogleAuth = () => {
-    const { setModalOpen } = useInfoContext();
+    const { setModalOpen, setUserId} = useInfoContext();
     const [userData, setUserData] = useState(null);
 
     const login = useGoogleLogin({
@@ -49,6 +49,7 @@ const GoogleAuth = () => {
 
                 // Modalni yopish
                 setModalOpen(false);
+                setUserId(response.data.user._id);
             } catch (error) {
                 console.error('Authentication Error:', error.message || error);
             }
