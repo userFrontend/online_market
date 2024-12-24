@@ -5,15 +5,15 @@ const BlogCard = () => {
   return (
     <div className="blog-card">
       <div className="blog-card__img">
-        <img src="/images/blog.png" alt="blog" />
+        <img src="/images/blog.png" alt="блог" />
       </div>
       <div className="blog-card__info">
-        <h2 className="blog-card__info__title">Cracking the Coconut Code</h2>
+        <h2 className="blog-card__info__title">Раскрываем секрет кокоса</h2>
         <p className="blog-card__info__description">
-          Reveal your skin's natural glow with our Lotus Glow Kit. Nourishing
-          body and face creams
+          Раскройте естественное сияние вашей кожи с нашим набором Lotus Glow. 
+          Увлажняющие кремы для тела и лица.
         </p>
-        <Link to="/blog/2" className="blog-card__info__btn">Read More</Link>
+        <Link to="/blog/2" className="blog-card__info__btn">Читать далее</Link>
       </div>
     </div>
   );

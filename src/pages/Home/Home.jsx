@@ -20,8 +20,8 @@ const Home = () => {
           <Hero/>
           <section className="swipers">
             <div className="container swipers__container">
-              <CustomSwiper data={products?.slice(-14)} text="new arrivals" />
-              <CustomSwiper data={products?.slice(-14)} text="best sellers" />
+              <CustomSwiper data={products?.slice(-14)} text="новинки" />
+              <CustomSwiper data={products?.slice(-14)} text="бестселлеры" />
             </div>
           </section>
           <section className="sets">
@@ -32,18 +32,17 @@ const Home = () => {
           </section>
           <section className="blogs">
             <div className="container blogs__container">
-              <CustomSwiper text="on the blog" blog={true} />
+              <CustomSwiper text="в блоге" blog={true} />
               <div className="quiz">
                 <div className="quiz__left">
                   <img src="images/quiz.png" alt="quiz" />
                 </div>
                 <div className="quiz__right">
-                  <h1>The Skin Quiz</h1>
+                  <h1>Тест для кожи</h1>
                   <p>
-                    Meet the quiz that will curate a routine just just just as
-                    unique as you are.
+                    Пройдите тест, который поможет создать уникальный уход, подходящий именно вам.
                   </p>
-                  <button>Explore more</button>
+                  <button>Узнать больше</button>
                 </div>
               </div>
             </div>
@@ -51,83 +50,83 @@ const Home = () => {
           <section className="shares">
             <div className="container shares__container">
               <Title>
-                Share how you blossomed with <span>#bloombeauty </span>
+                Поделитесь, как вы расцвели с <span>#bloombeauty </span>
               </Title>
               <ul className="shares__container__wrapper">
                 <li className="shares__container__wrapper__item">
                   <div className="shares__container__wrapper__item__curtain">
                     <button>
-                      See In <Icons.instagramOutline />
+                      Смотреть в <Icons.instagramOutline />
                     </button>
-                    <button>Buy Now</button>
+                    <button>Купить сейчас</button>
                   </div>
                 </li>
                 <li className="shares__container__wrapper__item">
                   <div className="shares__container__wrapper__item__curtain">
                     <button>
-                      See In <Icons.instagramOutline />
+                      Смотреть в <Icons.instagramOutline />
                     </button>
-                    <button>Buy Now</button>
+                    <button>Купить сейчас</button>
                   </div>
                 </li>
                 <li className="shares__container__wrapper__item">
                   <div className="shares__container__wrapper__item__curtain">
                     <button>
-                      See In <Icons.instagramOutline />
+                      Смотреть в <Icons.instagramOutline />
                     </button>
-                    <button>Buy Now</button>
+                    <button>Купить сейчас</button>
                   </div>
                 </li>
                 <li className="shares__container__wrapper__item">
                   <div className="shares__container__wrapper__item__curtain">
                     <button>
-                      See In <Icons.instagramOutline />
+                      Смотреть в <Icons.instagramOutline />
                     </button>
-                    <button>Buy Now</button>
+                    <button>Купить сейчас</button>
                   </div>
                 </li>
                 <li className="shares__container__wrapper__item">
                   <div className="shares__container__wrapper__item__curtain">
                     <button>
-                      See In <Icons.instagramOutline />
+                      Смотреть в <Icons.instagramOutline />
                     </button>
-                    <button>Buy Now</button>
+                    <button>Купить сейчас</button>
                   </div>
                 </li>
                 <li className="shares__container__wrapper__item">
                   <div className="shares__container__wrapper__item__curtain">
                     <button>
-                      See In <Icons.instagramOutline />
+                      Смотреть в <Icons.instagramOutline />
                     </button>
-                    <button>Buy Now</button>
+                    <button>Купить сейчас</button>
                   </div>
                 </li>
                 <li className="shares__container__wrapper__item">
                   <div className="shares__container__wrapper__item__curtain">
                     <button>
-                      See In <Icons.instagramOutline />
+                      Смотреть в <Icons.instagramOutline />
                     </button>
-                    <button>Buy Now</button>
+                    <button>Купить сейчас</button>
                   </div>
                 </li>
                 <li className="shares__container__wrapper__item">
                   <div className="shares__container__wrapper__item__curtain">
                     <button>
-                      See In <Icons.instagramOutline />
+                      Смотреть в <Icons.instagramOutline />
                     </button>
-                    <button>Buy Now</button>
+                    <button>Купить сейчас</button>
                   </div>
                 </li>
                 <li className="shares__container__wrapper__item">
                   <div className="shares__container__wrapper__item__curtain">
                     <button>
-                      See In <Icons.instagramOutline />
+                      Смотреть в <Icons.instagramOutline />
                     </button>
-                    <button>Buy Now</button>
+                    <button>Купить сейчас</button>
                   </div>
                 </li>
               </ul>
-              <button className="shares__container__btn">Follow Us</button>
+              <button className="shares__container__btn">Подписывайтесь на нас</button>
             </div>
           </section>
         </>

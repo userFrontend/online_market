@@ -4,26 +4,26 @@ import { Autoplay, Navigation, Pagination } from "swiper/modules";
 
 const Hero = () => {
     const slides = [
-      {
-        title: "Discover your inner beauty with Blossom Glow Kit",
-        description: "Great gift for yourself and loved ones",
-        buttonText: "Shop now",
-        image: "images/bg2.jpg",
-      },
-      {
-        title: "Experience the magic of our skincare collection",
-        description: "Tailored just for you",
-        buttonText: "Explore more",
-        image: "images/bg1.jpg",
-      },
-      {
-        title: "Glow naturally with our organic products",
-        description: "Feel beautiful every day",
-        buttonText: "Start shopping",
-        image: "images/bg.jpg",
-      },
-    ];
-  
+        {
+          title: "Откройте свою внутреннюю красоту с набором Blossom Glow",
+          description: "Прекрасный подарок для вас и ваших близких",
+          buttonText: "Купить сейчас",
+          image: "images/bg2.jpg",
+        },
+        {
+          title: "Испытайте магию нашей коллекции средств по уходу за кожей",
+          description: "Создано специально для вас",
+          buttonText: "Узнать больше",
+          image: "images/bg1.jpg",
+        },
+        {
+          title: "Сияйте естественно с нашими органическими продуктами",
+          description: "Чувствуйте себя красивой каждый день",
+          buttonText: "Начать покупки",
+          image: "images/bg.jpg",
+        },
+      ];
+      
     return (
       <section className="hero">
         <Swiper

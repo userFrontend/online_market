@@ -9,22 +9,21 @@ const BlogCardBig = ({ type }) => {
           type ? "right blog-card-big__info" : "left blog-card-big__info"
         }
       >
-        <h1>Blossom Glow Kit</h1>
+        <h1>Набор для сияния Blossom</h1>
         <p>
-          Reveal your skin's natural glow with our Lotus Glow Kit. Nourishing
-          body and face creams with lotus extract provide deep hydration and
-          rejuvenation. Suitable for all skin types. Vegan, cruelty-free,
-          eco-friendly.
+          Раскройте естественное сияние вашей кожи с нашим набором Lotus Glow.
+          Увлажняющие кремы для тела и лица с экстрактом лотоса обеспечивают
+          глубокое увлажнение и восстановление. Подходит для всех типов кожи.
+          Веганский, без тестирования на животных, экологичный.
         </p>
         <ul className="blog-card-big__info__tags">
-          <li className="tag"># Tips</li>
-          <li className="tag"># GreatGift</li>
-          <li className="tag"># GreatGift</li>
-          <li className="tag"># EcoFriendly</li>
-          <li className="tag"># GreatGift</li>
+          <li className="tag"># Советы</li>
+          <li className="tag"># ОтличныйПодарок</li>
+          <li className="tag"># Экологичный</li>
+          <li className="tag"># Уход</li>
         </ul>
         <div className="blog-card-big__info__buttons">
-          <Link to="/blog/1">Read More</Link>
+          <Link to="/blog/1">Читать далее</Link>
         </div>
       </div>
       <div
@@ -32,7 +31,7 @@ const BlogCardBig = ({ type }) => {
           type ? "blog-card-big__img left" : "blog-card-big__img right"
         }
       >
-        <img src="images/set.png" alt="" />
+        <img src="images/set.png" alt="Набор Blossom" />
       </div>
     </div>
   );

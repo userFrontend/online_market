@@ -10,12 +10,6 @@ const Footer = () => {
           <Link target="_blank" to={"/"}>
             <Icons.facebook />
           </Link>
-          <Link target="_blank" to={"/"}>
-            <Icons.pinterest />
-          </Link>
-          <Link target="_blank" to={"/"}>
-            <Icons.twitter />
-          </Link>
           <Link
             to={
               "https://www.instagram.com/beautybrand.cosmetics?igsh=MWR0MnR3cWhqOGhodQ=="
@@ -30,7 +24,7 @@ const Footer = () => {
         <div className="footer__container__middle">
           <div className="footer__container__middle__first">
             <h2>Beauty Brand</h2>
-            <p>Discover nature's beauty with our natural care products.</p>
+            <p>Откройте красоту природы с нашими натуральными средствами ухода.</p>
             <Link target="_blank" to={"tel:+998908155558"}>
               <Icons.phone />+ 998 90 815 55 58
             </Link>
@@ -40,25 +34,25 @@ const Footer = () => {
             </Link>
             <Link target="_blank" to={"/"}>
               <Icons.location />
-              Tashkent, Uzbekistan
+              Ташкент, Узбекистан
             </Link>
           </div>
           <div className="footer__container__middle__other">
-            <h2>Help</h2>
-            <Link to={"/"}>Contact us</Link>
-            <Link to={"/"}>FAQ</Link>
-            <Link to={"/"}>Shipping & Returns</Link>
+            <h2>Помощь</h2>
+            <Link to={"/"}>Свяжитесь с нами</Link>
+            <Link to={"/"}>Часто задаваемые вопросы</Link>
+            <Link to={"/"}>Доставка и возврат</Link>
           </div>
           <div className="footer__container__middle__other">
-            <h2>MY ACCOUNT</h2>
-            <Link to={"/"}>Addresses</Link>
-            <Link to={"/"}>Order Status</Link>
-            <Link to={"/"}>Wishlist</Link>
+            <h2>МОЙ АККАУНТ</h2>
+            <Link to={"/"}>Адреса</Link>
+            <Link to={"/"}>Статус заказа</Link>
+            <Link to={"/"}>Список желаний</Link>
           </div>
           <div className="footer__container__middle__other">
-            <h2>CUSTOMER CARE</h2>
-            <Link to={"/about"}>About us</Link>
-            <Link to={"/blog"}>Blog</Link>
+            <h2>ОБСЛУЖИВАНИЕ КЛИЕНТОВ</h2>
+            <Link to={"/about"}>О нас</Link>
+            <Link to={"/blog"}>Блог</Link>
           </div>
         </div>
       </div>
@@ -67,10 +61,10 @@ const Footer = () => {
           <p>© 2023 Bloom Beauty </p>
           <p>
             <Link target="_blank" to={"/"}>
-              Privacy Policy
+              Политика конфиденциальности
             </Link>
             <Link target="_blank" to={"/"}>
-              Terms and Conditions
+              Условия использования
             </Link>
           </p>
         </div>

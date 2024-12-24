@@ -244,6 +244,9 @@ header{
     }
 }
 @media (max-width: 1158px){
+    .header_nav{
+        padding: 15px 0;
+    }
     .header_list, .options{
         display: none !important;
     }
