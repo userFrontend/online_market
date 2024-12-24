@@ -14,6 +14,8 @@ const ProdCard = ({ data }) => {
   } = useInfoContext();
   // const isTop = true;
 
+  const onProd = ['8809255787078', '8807779080316', '5060542727532', '5060150185274', '5010724526798', '4870237010051', '4660222450111', '3700971335978', '3666057159367', '3401395376706', '3360372026129', '3348901720328', '3348901674331', '3348901665810', '3348901491150', '846733030316', '840122904929', '736150000316']
+
 
 
   const currentProd =
@@ -30,7 +32,7 @@ const ProdCard = ({ data }) => {
             ""
           )}
         </ul>
-        <img src={currentProd.url ? currentProd.url : "images/img.png"} alt="img" />
+        <img src={onProd.includes(currentProd.barCode) ? `prods/${currentProd.barCode}.jpg` : "images/img.png"} alt="img" />
         <Icons.likeDefault />
       </div>
 
@@ -76,7 +78,7 @@ const ProdCard = ({ data }) => {
             className="add-btn"
             onClick={() => addToCart(currentProd)}
           >
-            Add To Bag
+            Добавить в корзину
           </button>
         )}
       </div>

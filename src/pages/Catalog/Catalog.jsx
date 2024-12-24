@@ -39,6 +39,48 @@ const Catalog = () => {
     getResProd();
   }, [page]);
 
+  const getResProd = async () => {
+    try {
+      setLoading(true);
+      const params = new URLSearchParams();
+
+      for (const key in filters) {
+        if (Array.isArray(filters[key])) {
+          filters[key].forEach((val) => params.append(key, val));
+        } else if (filters[key]) {
+          params.append(key, filters[key]);
+        }
+      }
+
+      params.append("page", page);
+
+      const response = await getPage(`prod/filter?${params.toString()}`);
+      setData(response.data);
+    } catch (error) {
+      console.error("Ошибка при загрузке продуктов:", error.message || error);
+    } finally {
+      setLoading(false);
+    }
+  };
+  getResProd();
+
+
+  const handleFilterChange = (e) => {
+    e.preventDefault()
+    const { name, value, type, checked } = e.target;
+
+    if (type === "checkbox") {
+      setFilters((prev) => ({
+        ...prev,
+        [name]: checked
+          ? [...(prev[name] || []), value]
+          : prev[name]?.filter((v) => v !== value),
+      }));
+    } else {
+      setFilters((prev) => ({ ...prev, [name]: value }));
+    }
+  };
+
   const toggleAccordion = (e) => {
     e.preventDefault();
     console.log(e.currentTarget.parentElement.classList.contains("links"));
