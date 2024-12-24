@@ -1,4 +1,5 @@
 import SetCard from "../../components/Cards/SetCard/SetCard";
+import Hero from "../../components/Hero/Hero";
 import Loading from "../../components/Loading/Loading";
 import CustomSwiper from "../../components/Swiper/CustomSwiper";
 import Title from "../../components/Title/Title";
@@ -16,13 +17,7 @@ const Home = () => {
         <Loading />
       ) : (
         <>
-          <section className="hero">
-            <div className="container hero__container">
-              <h1>Discover your inner beauty with Blossom Glow Kit</h1>
-              <p>Great gift for yourself and loved ones</p>
-              <button>Shop now</button>
-            </div>
-          </section>
+          <Hero/>
           <section className="swipers">
             <div className="container swipers__container">
               <CustomSwiper data={products?.slice(-14)} text="new arrivals" />
