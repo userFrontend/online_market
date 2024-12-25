@@ -8,14 +8,16 @@ import Pagination from "../../components/Pagination/Pagination";
 import { useEffect, useState } from "react";
 import { getPage } from "../../api/getRequeset";
 import { DiScriptcs } from "react-icons/di";
+import { useNavigate } from "react-router-dom";
 
 const Catalog = () => {
   const { products, loading, setLoading } = useInfoContext();
 
   const [data, setData] = useState(products);
   const [showMore, setShowMore] = useState(false);
-  const [filters, setFilters] = useState({});
   const [screenWidth, setScreenWidth] = useState(window?.screen.width);
+  const [filters, setFilters] = useState({});
+  const navigate = useNavigate();
 
   const queryParams = new URLSearchParams(window.location.search);
   const [page, setPage] = useState(parseInt(queryParams.get("page")) || 1);
@@ -40,10 +42,16 @@ const Catalog = () => {
     getResProd();
   }, [page]);
 
+    const handleSubmit = async (e) => {
+      e.preventDefault()
+      console.log(filters);
+      
+    }
+
 
   const handleFilterChange = (e) => {
     const { name, value, type, checked } = e.target;
-  
+
     setFilters((prev) => {
       if (type === "checkbox") {
         return {
@@ -59,12 +67,19 @@ const Catalog = () => {
       }
     });
   };
-  
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log("Applied filters:", filters);
-  };
-  
+
+  // Query stringga o'zgartirishlarni yozish
+  useEffect(() => {
+    const queryString = Object.entries(filters)
+      .map(([key, value]) =>
+        Array.isArray(value)
+          ? value.map((v) => `${key}=${encodeURIComponent(v)}`).join("&")
+          : `${key}=${encodeURIComponent(value)}`
+      )
+      .join("&");
+
+    navigate(`?${queryString}`, { replace: true });
+  }, [filters, navigate]);
 
   const toggleAccordion = (e) => {
     e.preventDefault();
