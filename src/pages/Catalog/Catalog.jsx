@@ -13,12 +13,11 @@ import { useNavigate } from "react-router-dom";
 const Catalog = () => {
   const { products, loading, setLoading } = useInfoContext();
 
-  const [data, setData] = useState(products);
+  const [data, setData] = useState(products || []);
   const [showMore, setShowMore] = useState(false);
-  const [screenWidth, setScreenWidth] = useState(window?.screen.width);
   const [filters, setFilters] = useState({});
+  const [screenWidth, setScreenWidth] = useState(window?.screen.width);
   const navigate = useNavigate();
-
   const queryParams = new URLSearchParams(window.location.search);
   const [page, setPage] = useState(parseInt(queryParams.get("page")) || 1);
 
@@ -42,44 +41,52 @@ const Catalog = () => {
     getResProd();
   }, [page]);
 
-    const handleSubmit = async (e) => {
-      e.preventDefault()
-      console.log(filters);
-      
-    }
-
 
   const handleFilterChange = (e) => {
-    const { name, value, type, checked } = e.target;
+  e.preventDefault();
 
-    setFilters((prev) => {
-      if (type === "checkbox") {
-        return {
-          ...prev,
-          [name]: checked
-            ? [...(prev[name] || []), value]
-            : prev[name]?.filter((v) => v !== value),
-        };
-      } else if (type === "radio") {
-        return { ...prev, [name]: value };
-      } else {
-        return { ...prev, [name]: value };
-      }
-    });
+  const { name, value, type, checked } = e.target;
+
+  if (type === "checkbox") {
+    setFilters((prev) => ({
+      ...prev,
+      [name]: checked
+        ? [...(prev[name] || []), value]
+        : prev[name]?.filter((v) => v !== value),
+    }));
+  } else {
+    setFilters((prev) => ({ ...prev, [name]: value }));
+  }
+};
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true)
+    try {
+      const queryParams = new URLSearchParams();
+  
+      // Filtrlarni query stringga qo'shish
+      Object.entries(filters).forEach(([key, value]) => {
+        if (Array.isArray(value)) {
+          value.forEach((v) => queryParams.append(key, v));
+        } else {
+          queryParams.append(key, value);
+        }
+      });
+  
+      // Query stringni o'rnatish
+      navigate(`?${queryParams.toString()}`, { replace: true });
+  
+      // Ma'lumotlarni olish
+      const res = await getPage("prod", filters);
+      console.log(res);
+      setData(res.data)
+      setLoading(false)
+    } catch (error) {
+      setLoading(false)
+      console.log(error);
+    }
   };
-
-  // Query stringga o'zgartirishlarni yozish
-  useEffect(() => {
-    const queryString = Object.entries(filters)
-      .map(([key, value]) =>
-        Array.isArray(value)
-          ? value.map((v) => `${key}=${encodeURIComponent(v)}`).join("&")
-          : `${key}=${encodeURIComponent(value)}`
-      )
-      .join("&");
-
-    navigate(`?${queryString}`, { replace: true });
-  }, [filters, navigate]);
 
   const toggleAccordion = (e) => {
     e.preventDefault();
@@ -209,8 +216,8 @@ const Catalog = () => {
               <input
                 type="radio"
                 id="price-under"
-                name="price"
-                value="under-25"
+                name="priceMin"
+                value="25"
                 onChange={handleFilterChange}
               />
               <label htmlFor="price-under">До $25</label>
@@ -219,11 +226,11 @@ const Catalog = () => {
               <input
                 type="radio"
                 id="price-25-50"
-                name="price"
-                value="25-50"
+                name="priceMax"
+                value="50"
                 onChange={handleFilterChange}
               />
-              <label htmlFor="price-25-50">$25 - $50</label>
+              <label htmlFor="price-25-50">До $50</label>
             </div>
           </div>
 
