@@ -1,5 +1,5 @@
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay, Mousewheel, Pagination } from "swiper/modules";
+import { Autoplay, Navigation, Pagination } from "swiper/modules";
 import "./Hero.scss";
 
 const Hero = () => {
@@ -27,8 +27,8 @@ const Hero = () => {
     return (
       <section className="hero">
         <Swiper
-          modules={[Mousewheel, Pagination, Autoplay]}
-          mousewheel={{ invert: true }}
+          modules={[Navigation, Pagination, Autoplay]}
+          navigation={true}
           pagination={{ clickable: true }}
           autoplay={{ delay: 3000 }}
           loop
