@@ -14,6 +14,7 @@ const Catalog = () => {
 
   const [data, setData] = useState(products);
   const [showMore, setShowMore] = useState(false);
+  const [filters, setFilters] = useState({});
   const [screenWidth, setScreenWidth] = useState(window?.screen.width);
 
   const queryParams = new URLSearchParams(window.location.search);
@@ -23,13 +24,9 @@ const Catalog = () => {
     setScreenWidth(window?.screen.width);
   });
 
-  console.log(page);
   useEffect(() => {
     const getResProd = async () => {
       try {
-        const filters = {
-          priceMax: 20,
-        }
         setLoading(true);
         const response = await getPage(`prod`, filters, page);
         console.log(response.data);
@@ -43,47 +40,31 @@ const Catalog = () => {
     getResProd();
   }, [page]);
 
-  const getResProd = async () => {
-    try {
-      setLoading(true);
-      const params = new URLSearchParams();
-
-      for (const key in filters) {
-        if (Array.isArray(filters[key])) {
-          filters[key].forEach((val) => params.append(key, val));
-        } else if (filters[key]) {
-          params.append(key, filters[key]);
-        }
-      }
-
-      params.append("page", page);
-
-      const response = await getPage(`prod/filter?${params.toString()}`);
-      setData(response.data);
-    } catch (error) {
-      console.error("Ошибка при загрузке продуктов:", error.message || error);
-    } finally {
-      setLoading(false);
-    }
-  };
-  getResProd();
-
 
   const handleFilterChange = (e) => {
-    e.preventDefault()
     const { name, value, type, checked } = e.target;
-
-    if (type === "checkbox") {
-      setFilters((prev) => ({
-        ...prev,
-        [name]: checked
-          ? [...(prev[name] || []), value]
-          : prev[name]?.filter((v) => v !== value),
-      }));
-    } else {
-      setFilters((prev) => ({ ...prev, [name]: value }));
-    }
+  
+    setFilters((prev) => {
+      if (type === "checkbox") {
+        return {
+          ...prev,
+          [name]: checked
+            ? [...(prev[name] || []), value]
+            : prev[name]?.filter((v) => v !== value),
+        };
+      } else if (type === "radio") {
+        return { ...prev, [name]: value };
+      } else {
+        return { ...prev, [name]: value };
+      }
+    });
   };
+  
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log("Applied filters:", filters);
+  };
+  
 
   const toggleAccordion = (e) => {
     e.preventDefault();
@@ -166,142 +147,71 @@ const Catalog = () => {
           <button className="filter-title">Фильтры</button>
         )}
 
-        <form className="filter">
+        <form onSubmit={handleSubmit} className="filter">
           <button type="button" onClick={(e) => toggleAccordion(e)}>
             Тип продукта
             <Icons.accordionIcon className="button__icon" />
           </button>
           <div className="accordion">
             <div className="input-box">
-              <input type="checkbox" id="all" name="all" value="all" />
-              <label htmlFor="all">Все</label>
-            </div>
-            <div className="input-box">
-              <input type="checkbox" id="oily" name="oily" value="oily" />
-              <label htmlFor="oily">Жирная кожа</label>
-            </div>
-            <div className="input-box">
-              <input type="checkbox" id="dry" name="dry" value="dry" />
-              <label htmlFor="dry">Сухая кожа</label>
+              <input
+                type="checkbox"
+                id="all-products"
+                name="productType"
+                value="all"
+                onChange={handleFilterChange}
+              />
+              <label htmlFor="all-products">Все</label>
             </div>
             <div className="input-box">
               <input
                 type="checkbox"
-                id="normal"
-                name="normal"
-                value="normal"
+                id="oily-products"
+                name="productType"
+                value="oily"
+                onChange={handleFilterChange}
               />
-              <label htmlFor="normal">Нормальная кожа</label>
+              <label htmlFor="oily-products">Жирная кожа</label>
             </div>
             <div className="input-box">
               <input
                 type="checkbox"
-                id="sensitive"
-                name="sensitive"
-                value="sensitive"
+                id="dry-products"
+                name="productType"
+                value="dry"
+                onChange={handleFilterChange}
               />
-              <label htmlFor="sensitive">Чувствительная кожа</label>
+              <label htmlFor="dry-products">Сухая кожа</label>
             </div>
           </div>
-          <button type="button" onClick={(e) => toggleAccordion(e)}>
-            Тип ингредиента
-            <Icons.accordionIcon className="button__icon" />
-          </button>
-          <div className="accordion">
-            <div className="input-box">
-              <input type="checkbox" id="all" name="all" value="all" />
-              <label htmlFor="all">Все</label>
-            </div>
-            <div className="input-box">
-              <input type="checkbox" id="oily" name="oily" value="oily" />
-              <label htmlFor="oily">Жирная кожа</label>
-            </div>
-            <div className="input-box">
-              <input type="checkbox" id="dry" name="dry" value="dry" />
-              <label htmlFor="dry">Сухая кожа</label>
-            </div>
-            <div className="input-box">
-              <input
-                type="checkbox"
-                id="normal"
-                name="normal"
-                value="normal"
-              />
-              <label htmlFor="normal">Нормальная кожа</label>
-            </div>
-            <div className="input-box">
-              <input
-                type="checkbox"
-                id="sensitive"
-                name="sensitive"
-                value="sensitive"
-              />
-              <label htmlFor="sensitive">Чувствительная кожа</label>
-            </div>
-          </div>
-          <button type="button" onClick={(e) => toggleAccordion(e)}>
-            Тип кожи
-            <Icons.accordionIcon className="button__icon" />
-          </button>
-          <div className="accordion">
-            <div className="input-box">
-              <input type="checkbox" id="all" name="all" value="all" />
-              <label htmlFor="all">Все</label>
-            </div>
-            <div className="input-box">
-              <input type="checkbox" id="oily" name="oily" value="oily" />
-              <label htmlFor="oily">Жирная кожа</label>
-            </div>
-            <div className="input-box">
-              <input type="checkbox" id="dry" name="dry" value="dry" />
-              <label htmlFor="dry">Сухая кожа</label>
-            </div>
-            <div className="input-box">
-              <input
-                type="checkbox"
-                id="normal"
-                name="normal"
-                value="normal"
-              />
-              <label htmlFor="normal">Нормальная кожа</label>
-            </div>
-            <div className="input-box">
-              <input
-                type="checkbox"
-                id="sensitive"
-                name="sensitive"
-                value="sensitive"
-              />
-              <label htmlFor="sensitive">Чувствительная кожа</label>
-            </div>
-          </div>
+
           <button type="button" onClick={(e) => toggleAccordion(e)}>
             Ценовой диапазон
             <Icons.accordionIcon className="button__icon" />
           </button>
           <div className="accordion">
             <div className="input-box">
-              <input type="radio" id="under" name="price" value="all" />
-              <label htmlFor="under">До $25</label>
-            </div>
-            <div className="input-box">
-              <input type="radio" id="25-50" name="price" value="oily" />
-              <label htmlFor="25-50">$25 - $50</label>
-            </div>
-            <div className="input-box">
-              <input type="radio" id="50-100" name="price" value="dry" />
-              <label htmlFor="50-100">$50 - $100</label>
+              <input
+                type="radio"
+                id="price-under"
+                name="price"
+                value="under-25"
+                onChange={handleFilterChange}
+              />
+              <label htmlFor="price-under">До $25</label>
             </div>
             <div className="input-box">
               <input
-                type="checkbox"
-                id="normal"
-                name="normal"
-                value="normal"
+                type="radio"
+                id="price-25-50"
+                name="price"
+                value="25-50"
+                onChange={handleFilterChange}
               />
-              <label htmlFor="normal">Нормальная</label>
+              <label htmlFor="price-25-50">$25 - $50</label>
             </div>
           </div>
+
           <button className="apply" type="submit">
             Применить
           </button>

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { Modal } from 'antd';
 import { FaRegUser } from 'react-icons/fa';
 import './Auth.scss';
@@ -6,22 +6,28 @@ import GoogleAuth from './GoogleAuth';
 import { Icons } from '../../utils/icons';
 import { Link } from 'react-router-dom';
 import { useInfoContext } from '../../context/infoContext';
+import { login, signUp } from '../../api/authRequest';
+import PhoneInput from '../Input/Input';
 
 const AuthModal = () => {
-  const {userId, modalOpen, setModalOpen} = useInfoContext()
+  const { userId, modalOpen, setModalOpen } = useInfoContext();
   const [isRegister, setIsRegister] = useState(false);
   const [emailOrPhone, setEmailOrPhone] = useState('');
   const [isPhone, setIsPhone] = useState(false);
+  const [phone, setPhone] = useState('+998 (__) ___-__-__');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [name, setName] = useState('');
   const [error, setError] = useState('');
+  const emailInputRef = useRef(null);
+  const phoneInputRef = useRef(null);
 
   const showModal = () => {
     setModalOpen(!modalOpen);
     setIsRegister(false);
     setEmailOrPhone('');
     setIsPhone(false);
+    setPhone('+998 (__) ___-__-__');
     setPassword('');
     setConfirmPassword('');
     setName('');
@@ -31,46 +37,73 @@ const AuthModal = () => {
   const handleEmailOrPhoneChange = (e) => {
     const value = e.target.value;
     setEmailOrPhone(value);
-    if (value.startsWith('+') || value.startsWith('9')) {
+
+    if (value.length === 1 && (value === '+' || value === '9')) {
       setIsPhone(true);
-    } else {
+      setPhone('+998 (__) ___-__-__');
+      setTimeout(() => phoneInputRef.current?.focus(), 0);
+    } else if (!/^[\d+]*$/.test(value)) {
       setIsPhone(false);
+      setTimeout(() => emailInputRef.current?.focus(), 0);
     }
   };
 
-  const handleSubmit = () => {
+  const validatePassword = (password) => {
+    return (
+      password.length >= 6 &&
+      /[a-zA-Z]/.test(password) &&
+      /\d/.test(password)
+    );
+  };
+
+  const handleSubmit = async () => {
     if (isRegister) {
-      if (!name || !emailOrPhone || !password || !confirmPassword) {
-        setError('All fields are required!');
+      if (!name || (!emailOrPhone && !isPhone) || !password || !confirmPassword) {
+        setError('Все поля обязательны для заполнения!');
         return;
       }
       if (password !== confirmPassword) {
-        setError('Passwords do not match!');
+        setError('Пароли не совпадают!');
         return;
       }
-      console.log('Registering:', { name, emailOrPhone, password });
+      if (!validatePassword(password)) {
+        setError('Пароль должен содержать минимум 6 символов, включая буквы и цифры!');
+        return;
+      }
+      const data = isPhone
+        ? { phoneNumber: phone.replace(/[^\d]/g, '') }
+        : { email: emailOrPhone };
+      const res = await signUp({ ...data, password });
+      console.log(res);
     } else {
-      if (!emailOrPhone || !password) {
-        setError('Email/Phone and Password are required!');
+      if ((!emailOrPhone && !isPhone) || !password) {
+        setError('Email/Телефон и пароль обязательны!');
         return;
       }
-      console.log('Logging in:', { emailOrPhone, password });
+      if (!validatePassword(password)) {
+        setError('Пароль должен содержать минимум 6 символов, включая буквы и цифры!');
+        return;
+      }
+      const data = isPhone
+        ? { phoneNumber: phone.replace(/[^\d]/g, '') }
+        : { email: emailOrPhone };
+      const res = await login({ ...data, password });
+      console.log(res);
     }
     setError('');
-    setOpen(false);
+    setModalOpen(false);
   };
 
   return (
     <>
-      <Link to={userId ? '/profile' : ''} className="option_items" onClick={!userId && showModal}>
+      <Link
+        to={userId ? '/profile' : ''}
+        className="option_items"
+        onClick={!userId && showModal}
+      >
         <FaRegUser className="icon" /> АККАУНТ
       </Link>
-      <Modal
-        centered
-        footer={null}
-        open={modalOpen}
-        onCancel={showModal}
-      >
+      <Modal centered footer={null} open={modalOpen} onCancel={showModal}>
         <div className="auth_modal">
           <div className="auth_tabs">
             <span
@@ -95,12 +128,17 @@ const AuthModal = () => {
                 onChange={(e) => setName(e.target.value)}
               />
             )}
-            <input
-              type="text"
-              placeholder="E-mail или Телефон"
-              value={emailOrPhone}
-              onChange={handleEmailOrPhoneChange}
-            />
+            {isPhone ? (
+              <PhoneInput phone={phone} setPhone={setPhone} ref={phoneInputRef} />
+            ) : (
+              <input
+                type="text"
+                placeholder="E-mail или Телефон"
+                value={emailOrPhone}
+                onChange={handleEmailOrPhoneChange}
+                ref={emailInputRef}
+              />
+            )}
             <input
               type="password"
               placeholder="Пароль"
@@ -115,11 +153,6 @@ const AuthModal = () => {
                 onChange={(e) => setConfirmPassword(e.target.value)}
               />
             )}
-            {isRegister && (
-              <label>
-                <input type="checkbox" /> Получать уведомления о скидках, новинках, акциях и новостях
-              </label>
-            )}
             {error && <div className="auth_error">{error}</div>}
             <button type="button" className="auth_btn" onClick={handleSubmit}>
               {isRegister ? 'Зарегистрироваться' : 'Вход'}
@@ -127,11 +160,11 @@ const AuthModal = () => {
           </form>
           <div className="google">
             <div className="auth_bottom">
-              <Icons.roseLeft/>
+              <Icons.roseLeft />
               <span>ИЛИ</span>
-              <Icons.roseRight/>
+              <Icons.roseRight />
             </div>
-            <GoogleAuth/>
+            <GoogleAuth />
           </div>
         </div>
       </Modal>
