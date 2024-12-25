@@ -74,7 +74,7 @@ const Pagination = ({ totalItems, changePage }) => {
             cursor: item === "..." ? "default" : "pointer",
           }}
         >
-          <span>{item}</span>
+          <span>{item+""}</span>
         </button>
       ))}
 
