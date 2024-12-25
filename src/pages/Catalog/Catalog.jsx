@@ -7,7 +7,6 @@ import "./Catalog.scss";
 import Pagination from "../../components/Pagination/Pagination";
 import { useEffect, useState } from "react";
 import { getPage } from "../../api/getRequeset";
-import { DiScriptcs } from "react-icons/di";
 import { useNavigate } from "react-router-dom";
 
 const Catalog = () => {
