@@ -1,13 +1,12 @@
 .hero {
-  position: relative;
   width: 100%;
-  height: 100vh;
+  height: 80vh;
   display: flex;
   align-items: center;
   justify-content: center;
-
+  margin-bottom: 70px;
   .hero__swiper {
-    width: 100%;
+    position: relative;
     height: 100%;
     .swiper-button-prev, .swiper-button-next{
       color: var(--secondary-color);
@@ -29,17 +28,21 @@
     align-items: center;
     justify-content: center;
     text-align: center;
-    height: 100vh;
     color: #fff;
     position: relative;
+    .hero__image {
+      position: absolute;
+      inset: 0;
+      object-fit: cover;
+      z-index: 1;
+    }
 
     .hero__container {
       position: relative;
       z-index: 10;
-      // background: rgba(0, 0, 0, 0.5); // Matnni yaxshiroq ko'rish uchun qora fon.
       padding: 20px;
+      margin: 0 20px;
       border-radius: 10px;
-
       h1 {
         font-size: 2.5rem;
         margin-bottom: 20px;
@@ -68,18 +71,45 @@
     }
   }
 }
-.hero__image {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  z-index: 1;
-}
 
-.hero__container {
-  position: relative;
-  z-index: 10;
-  // Matn uchun boshqa stylinglar oldingi kodda bor.
+@media (max-width: 768px) {
+  .hero {
+    height: 60vh;
+    .hero__swiper {
+      position: relative;
+      height: 100%;
+      .swiper-button-prev, .swiper-button-next{
+        color: var(--secondary-color);
+      }
+      .swiper-pagination {
+        &-bullet {
+          opacity: 1;
+          background: #dfe1e3;
+        }
+        &-bullet-active {
+          opacity: 1;
+          background: var(--secondary-color);
+        }
+      }
+    }
+    .hero__slide {
+      .hero__container {
+        margin: 0;
+        padding: 10px;
+        h1 {
+          font-size: 24px;
+        }
+
+        p {
+          font-size: 1rem;
+        }
+
+        button {
+          padding: 10px 15px;
+          font-size: 0.9rem;
+        }
+      }
+    }
+  }
+  
 }

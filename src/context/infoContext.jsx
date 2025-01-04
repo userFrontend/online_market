@@ -23,6 +23,7 @@ export const InfoProvider = ({ children }) => {
         setLoading(true);
         const response = await getReq(`prod`);
         setProducts(response.data.prod);
+        console.log(response.data);
       } catch (error) {
         console.error("Error fetching products:", error.message || error);
       } finally {

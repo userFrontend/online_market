@@ -104,7 +104,7 @@ const CustomSwiper = ({ text, blog, data }) => {
           modules={[Autoplay, Pagination, Navigation]}
           className="mySwiper"
         >
-          {data.map((el) => {
+          {data?.map((el) => {
             return (
               <SwiperSlide key={el.ID}>
                 <ProdCard data={el} />
