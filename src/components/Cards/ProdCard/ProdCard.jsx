@@ -32,7 +32,7 @@ const ProdCard = ({ data }) => {
             ""
           )}
         </ul>
-        <img src={onProd.includes(currentProd.barCode) ? `prods/${currentProd.barCode}.jpg` : "images/img.png"} alt="img" />
+        <img src={`prods/${currentProd.barCode}.jpg`} alt="img" />
         <Icons.likeDefault />
       </div>
 
