@@ -10,7 +10,7 @@ import { login, signUp } from '../../api/authRequest';
 import PhoneInput from '../Input/Input';
 
 const AuthModal = () => {
-  const { userId, modalOpen, setModalOpen } = useInfoContext();
+  const { userId, modalOpen, setModalOpen, setCurrentUser } = useInfoContext();
   const [isRegister, setIsRegister] = useState(false);
   const [emailOrPhone, setEmailOrPhone] = useState('');
   const [isPhone, setIsPhone] = useState(false);
@@ -57,41 +57,46 @@ const AuthModal = () => {
   };
 
   const handleSubmit = async () => {
-    if (isRegister) {
-      if (!name || (!emailOrPhone && !isPhone) || !password || !confirmPassword) {
-        setError('Все поля обязательны для заполнения!');
-        return;
+    try {
+      if (isRegister) {
+        if (!name || (!emailOrPhone && !isPhone) || !password || !confirmPassword) {
+          setError("Все поля обязательны для заполнения!");
+          return;
+        }
+        if (password !== confirmPassword) {
+          setError("Пароли не совпадают!");
+          return;
+        }
+        if (!validatePassword(password)) {
+          setError("Пароль должен содержать минимум 6 символов, включая буквы и цифры!");
+          return;
+        }
+        const data = isPhone
+          ? { fullname: name, phoneNumber: phone.replace(/[^\d]/g, ""), password }
+          : { fullname: name, email: emailOrPhone, password };
+        const res = await signUp(data);
+        localStorage.setItem('user_id', res.data.user._id);
+        localStorage.setItem('verification_tokenauthuser', res.data.token);
+        setCurrentUser(res?.data?.user);
+      } else {
+        if ((!emailOrPhone && !isPhone) || !password) {
+          setError("Email/Телефон и пароль обязательны!");
+          return;
+        }
+        const data = isPhone
+          ? { phoneNumber: phone.replace(/[^\d]/g, ""), password }
+          : { email: emailOrPhone, password };
+        const res = await login(data);
+        localStorage.setItem('user_id', res.data.user._id);
+        localStorage.setItem('verification_tokenauthuser', res.data.token);
+        setCurrentUser(res?.data?.user);
       }
-      if (password !== confirmPassword) {
-        setError('Пароли не совпадают!');
-        return;
-      }
-      if (!validatePassword(password)) {
-        setError('Пароль должен содержать минимум 6 символов, включая буквы и цифры!');
-        return;
-      }
-      const data = isPhone
-        ? { phoneNumber: phone.replace(/[^\d]/g, '') }
-        : { email: emailOrPhone };
-      const res = await signUp({ ...data, password });
-      console.log(res);
-    } else {
-      if ((!emailOrPhone && !isPhone) || !password) {
-        setError('Email/Телефон и пароль обязательны!');
-        return;
-      }
-      if (!validatePassword(password)) {
-        setError('Пароль должен содержать минимум 6 символов, включая буквы и цифры!');
-        return;
-      }
-      const data = isPhone
-        ? { phoneNumber: phone.replace(/[^\d]/g, '') }
-        : { email: emailOrPhone };
-      const res = await login({ ...data, password });
-      console.log(res);
+      setError("");
+      setModalOpen(false);
+    } catch (error) {
+      console.error(error);
+      setError(error?.response?.data?.message || "Ошибка сервера");
     }
-    setError('');
-    setModalOpen(false);
   };
 
   return (
@@ -122,6 +127,7 @@ const AuthModal = () => {
           <form className="auth_form">
             {isRegister && (
               <input
+                name='fullname'
                 type="text"
                 placeholder="Имя / Фамилия"
                 value={name}
@@ -133,6 +139,7 @@ const AuthModal = () => {
             ) : (
               <input
                 type="text"
+                name=''
                 placeholder="E-mail или Телефон"
                 value={emailOrPhone}
                 onChange={handleEmailOrPhoneChange}

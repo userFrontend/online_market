@@ -16,12 +16,6 @@ const Header = () => {
     const [open, setOpen] = useState(false);
     const showDrawer = () => setOpen(!open);
     const toggleBurger = () => setShowBurger(!showBurger)
-
-    const text = `
-      A dog is a type of domesticated animal.
-      Known for its loyalty and faithfulness,
-      it can be found as a welcome guest in many households across the world.
-    `;
   return (
     <header>
         <div className="container">
@@ -252,8 +246,6 @@ const Header = () => {
                             <ul>
                               <h3>Z</h3>
                               <li>Zo skin health</li>
-                              <li>Tarte</li>
-                              <li>Tom ford</li>
                             </ul>
                             </div>
                           </div>
@@ -313,177 +305,82 @@ const Header = () => {
           </div>
         </Drawer>
         <Drawer className='menu_box' closeIcon={false} title={false} onClose={toggleBurger} open={showBurger}>
-          <div className="header_menu">
-            <h3>МЕНЮ</h3>
-            <button onClick={toggleBurger}><MdClose /></button>
-          </div>
-          <Link className='option_menu'><LuSearch className='icon'/> ПОИСК</Link>
-          <div className='option_menu'><AuthModal/></div>
-          <ul>
-            <li>
-                <Collapse className='collapse_menu' accordion ghost expandIconPosition='end' items={[{
+    <div className="header_menu">
+        <h3>МЕНЮ</h3>
+        <button onClick={toggleBurger}><MdClose /></button>
+    </div>
+    <Link to='/' className='option_menu'><LuSearch className='icon'/> ПОИСК</Link>
+    <div className='option_menu'><AuthModal/></div>
+    <ul className='menu_list'>
+        <li>
+            <Collapse className='collapse_menu' accordion ghost expandIconPosition='end' 
+                items={[{
                     key: '1',
                     label: 'МАКИЯЖ',
-                    children: <div>
-                    <Collapse className='collapse_menu_item' accordion ghost expandIconPosition='end' items={[
-                      {
-                        key: '1.1',
-                        label: 'Double-Cleanse',
-                        children: <ul>
-                          <li><Link>Cleansing Balms</Link></li>
-                          <li><Link>Cleansing Balms</Link></li>
-                          <li><Link>Water Cleansers</Link></li>
-                        </ul>,
-                      },
-                      {
-                        key: '1.2',
-                        label: 'Exfoliators',
-                        children: <ul>
-                          <li><Link>Cleansing Balms</Link></li>
-                          <li><Link>Cleansing Balms</Link></li>
-                          <li><Link>Water Cleansers</Link></li>
-                        </ul>,
-                      },
-                      {
-                        key: '1.3',
-                        label: 'Toners',
-                        children: <ul>
-                          <li><Link>Cleansing Balms</Link></li>
-                          <li><Link>Cleansing Balms</Link></li>
-                          <li><Link>Water Cleansers</Link></li>
-                        </ul>,
-                      },
-                      {
-                        key: '1.4',
-                        label: 'Masks',
-                        children: <ul>
-                          <li><Link>Cleansing Balms</Link></li>
-                          <li><Link>Cleansing Balms</Link></li>
-                          <li><Link>Water Cleansers</Link></li>
-                        </ul>,
-                      },
-                      {
-                        key: '1.5',
-                        label: 'Eye Care',
-                        children: <ul>
-                          <li><Link>Cleansing Balms</Link></li>
-                          <li><Link>Cleansing Balms</Link></li>
-                          <li><Link>Water Cleansers</Link></li>
-                        </ul>,
-                      },
-                      {
-                        key: '1.6',
-                        label: 'Moisturizers',
-                        children: <ul>
-                          <li><Link>Cleansing Balms</Link></li>
-                          <li><Link>Cleansing Balms</Link></li>
-                          <li><Link>Water Cleansers</Link></li>
-                        </ul>,
-                      },
-                      {
-                        key: '1.7',
-                        label: 'Sun Protection',
-                        children: <ul>
-                          <li><Link>Cleansing Balms</Link></li>
-                          <li><Link>Cleansing Balms</Link></li>
-                          <li><Link>Water Cleansers</Link></li>
-                        </ul>,
-                      },
-                    ]}/>
-                    <Link>Cleansing Balms</Link>
-                    <Link>Makeup & Tools</Link>
-                    </div>
-                  }]} />
-            </li>
-            <li>
-                <Link to='/bestsellers'>ДЛЯ ЛИЦА</Link>
-            </li>
-            <li>
-                <Link to='/colliction'>ДЛЯ ТЕЛА</Link>
-            </li>
-            <li>
-                <Collapse className='collapse_menu' accordion ghost expandIconPosition='end' items={[{
-                    key: '1',
+                    children: (
+                        <div>
+                            <ul>
+                                <h3>Тон</h3>
+                                <li>Праймеры</li>
+                                <li>Тональный крем</li>
+                                <li>Пудра</li>
+                                <li>Румяна, бронзаторы</li>
+                                <li>Хайлайтеры</li>
+                                <li>Консиллеры</li>
+                                <li>Палетки для лица</li>
+                            </ul>
+                            <ul>
+                                <h3>Губы</h3>
+                                <li>Блески</li>
+                                <li>Помады</li>
+                                <li>Контурные карандаши</li>
+                            </ul>
+                            <ul>
+                                <h3>Глаза</h3>
+                                <li>Тени для век</li>
+                                <li>Карандаши</li>
+                                <li>Подводки</li>
+                            </ul>
+                        </div>
+                    )
+                }]} />
+        </li>
+        <li>
+            <Link to='/bestsellers'>ДЛЯ ЛИЦА</Link>
+        </li>
+        <li>
+            <Link to='/colliction'>ДЛЯ ТЕЛА</Link>
+        </li>
+        <li>
+            <Collapse className='collapse_menu' accordion ghost expandIconPosition='end' 
+                items={[{
+                    key: '2',
                     label: 'ДЛЯ ВОЛОС',
-                    children: <div>
-                    <Collapse className='collapse_menu_item' accordion ghost expandIconPosition='end' items={[
-                      {
-                        key: '1.1',
-                        label: 'Double-Cleanse',
-                        children: <ul>
-                          <li><Link>Cleansing Balms</Link></li>
-                          <li><Link>Cleansing Balms</Link></li>
-                          <li><Link>Water Cleansers</Link></li>
-                        </ul>,
-                      },
-                      {
-                        key: '1.2',
-                        label: 'Exfoliators',
-                        children: <ul>
-                          <li><Link>Cleansing Balms</Link></li>
-                          <li><Link>Cleansing Balms</Link></li>
-                          <li><Link>Water Cleansers</Link></li>
-                        </ul>,
-                      },
-                      {
-                        key: '1.3',
-                        label: 'Toners',
-                        children: <ul>
-                          <li><Link>Cleansing Balms</Link></li>
-                          <li><Link>Cleansing Balms</Link></li>
-                          <li><Link>Water Cleansers</Link></li>
-                        </ul>,
-                      },
-                      {
-                        key: '1.4',
-                        label: 'Masks',
-                        children: <ul>
-                          <li><Link>Cleansing Balms</Link></li>
-                          <li><Link>Cleansing Balms</Link></li>
-                          <li><Link>Water Cleansers</Link></li>
-                        </ul>,
-                      },
-                      {
-                        key: '1.5',
-                        label: 'Eye Care',
-                        children: <ul>
-                          <li><Link>Cleansing Balms</Link></li>
-                          <li><Link>Cleansing Balms</Link></li>
-                          <li><Link>Water Cleansers</Link></li>
-                        </ul>,
-                      },
-                      {
-                        key: '1.6',
-                        label: 'Moisturizers',
-                        children: <ul>
-                          <li><Link>Cleansing Balms</Link></li>
-                          <li><Link>Cleansing Balms</Link></li>
-                          <li><Link>Water Cleansers</Link></li>
-                        </ul>,
-                      },
-                      {
-                        key: '1.7',
-                        label: 'Sun Protection',
-                        children: <ul>
-                          <li><Link>Cleansing Balms</Link></li>
-                          <li><Link>Cleansing Balms</Link></li>
-                          <li><Link>Water Cleansers</Link></li>
-                        </ul>,
-                      },
-                    ]}/>
-                    <Link>Cleansing Balms</Link>
-                    <Link>Makeup & Tools</Link>
-                    </div>
-                  }]} />
-            </li>
-            <li>
-                <Link to='/blog'>АКСЕССУАРЫ</Link>
-            </li>
-            <li>
-                <Link to='/blog'>БРЕНДЫ</Link>
-            </li>
-          </ul>
+                    children: (
+                        <div>
+                            <ul>
+                                <li>Шампуни</li>
+                                <li>Кондиционеры</li>
+                                <li>Маски</li>
+                            </ul>
+                            <ul>
+                                <li>Масла</li>
+                                <li>Спреи</li>
+                                <li>Термозащита</li>
+                            </ul>
+                        </div>
+                    )
+                }]} />
+        </li>
+        <li>
+            <Link to='/about'>АКСЕССУАРЫ</Link>
+        </li>
+        <li>
+            <Link to='/blog'>БРЕНДЫ</Link>
+        </li>
+    </ul>
         </Drawer>
+
     </header>
   )
 }

@@ -5,7 +5,7 @@ import { FcGoogle } from 'react-icons/fc';
 import { useInfoContext } from '../../context/infoContext';
 
 const GoogleAuth = () => {
-    const { setModalOpen, setUserId} = useInfoContext();
+    const { setModalOpen, setUserId } = useInfoContext();
     const [userData, setUserData] = useState(null);
 
     const login = useGoogleLogin({
@@ -13,7 +13,7 @@ const GoogleAuth = () => {
             try {
                 const res = await fetch('https://www.googleapis.com/oauth2/v3/userinfo', {
                     headers: {
-                        Authorization: `Bearer ${tokenResponse.access_token}`, // To'g'ri token uzatildi
+                        Authorization: `Bearer ${tokenResponse.access_token}`,
                     },
                 });
 
@@ -35,9 +35,8 @@ const GoogleAuth = () => {
         const signIn = async () => {
             try {
                 if (!userData) return;
-
                 const data = {
-                    fullname: `${userData.given_name} ${userData.family_name}`,
+                    fullname: `${userData.given_name || ''} ${userData.family_name || ''}`.trim(),
                     email: userData.email,
                 };
 
@@ -56,7 +55,7 @@ const GoogleAuth = () => {
         };
 
         signIn();
-    }, [userData, setModalOpen]);
+    }, [userData, setModalOpen, setUserId]);
 
     return (
         <button className="google_btn" onClick={login}>

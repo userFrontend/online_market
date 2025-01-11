@@ -15,21 +15,28 @@ const Orders = () => {
   const orderId = Math.floor(100000 + Math.random() * 900000);
 
   const handleAdd = async (e) => {
-    e.preventDefault()
+    e.preventDefault();
+    const orderId = Math.floor(100000 + Math.random() * 900000);
+  
     try {
-      const data = new FormData(e.target)
-      data.append('products', cartItems)
-      data.append('totalPrice', totalPrice)
-      data.append('id', orderId)
-      const res = await addReq(data, 'prod')
-      setSended(true)
-      setCartItems([])
-      localStorage.removeItem('cart')
+      const data = new FormData(e.target);
+      data.append('products', JSON.stringify(cartItems));
+      data.append('totalPrice', totalPrice);
+      data.append('id', orderId);
+      data.append('phone', phoneNumber);
+  
+      const res = await addReq(data, 'prod');
+      console.log(res);
+  
+      setSended(true);
+      localStorage.removeItem('cart');
+      setCartItems([]);
     } catch (error) {
-      setSended(false)
-      console.log(error);
+      setSended(false);
+      console.error("Error:", error);
     }
-  }
+  };
+  
   return (
     <div className="container">
       {sended ? <div className='sended'>
